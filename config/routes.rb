@@ -1,9 +1,13 @@
 AsThing::Application.routes.draw do
-  resources :as_values
+  # resources :as_values
 
-  resources :as_labels
+  # resources :as_labels
 
-  resources :as_notes
+  resources :as_notes do
+    resources :as_labels do
+      resources :as_values
+    end
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
