@@ -11,7 +11,7 @@
 
 <% @as_notes.each do |as_note| %>
   <tr>
-    <td><%= as_note.name %></td>
+    <td><%= link_to as_note.name, {:action=>"showdata", :id=>as_note} %></td>
     <td><%= as_note.comment %></td>
     <td><%= link_to 'Show', as_note %></td>
     <td><%= link_to 'Edit', edit_as_note_path(as_note) %></td>
@@ -23,3 +23,4 @@
 <br />
 
 <%= link_to 'New As note', new_as_note_path %>
+
