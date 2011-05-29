@@ -1,4 +1,4 @@
-<%= form_for(@as_label) do |f| %>
+<%= form_for [@as_note, @as_label] do |f| %>
   <% if @as_label.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@as_label.errors.count, "error") %> prohibited this as_label from being saved:</h2>

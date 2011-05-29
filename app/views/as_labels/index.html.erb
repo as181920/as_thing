@@ -37,13 +37,14 @@
     <td><%= as_label.default_value %></td>
     <td><%= as_label.editable %></td>
     <td><%= as_label.visible %></td>
-    <td><%= link_to 'Show', as_label %></td>
-    <td><%= link_to 'Edit', edit_as_label_path(as_label) %></td>
-    <td><%= link_to 'Destroy', as_label, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'Show', [@as_note,as_label] %></td>
+    <td><%= link_to 'Edit', edit_as_note_as_label_path(@as_note,as_label) %></td>
+    <td><%= link_to 'Destroy', [@as_note,as_label], :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New As label', new_as_label_path %>
+<%= link_to 'Back to AsNote', @as_note %> |
+<%= link_to 'New As label', new_as_note_as_label_path(@as_note) %>

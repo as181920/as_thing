@@ -71,5 +71,6 @@
 </p>
 
 
-<%= link_to 'Edit', edit_as_label_path(@as_label) %> |
-<%= link_to 'Back', as_labels_path %>
+<%= link_to 'Back', as_note_as_labels_path(@as_note) %> |
+<%= link_to 'Edit', edit_as_note_as_label_path(@as_note,@as_label) %> |
+<%= link_to 'Destroy', [@as_note,@as_label], :confirm=>'Are you sure?', :method=>:delete %>

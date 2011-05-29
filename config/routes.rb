@@ -1,13 +1,15 @@
 AsThing::Application.routes.draw do
-  # resources :as_values
 
-  # resources :as_labels
+  match 'as_notes/:id/showdata' => 'as_notes#showdata'
+  #match 'as_notes/:id/editlabels' => 'as_notes#editlabels'
 
   resources :as_notes do
     resources :as_labels do
       resources :as_values
     end
   end
+
+  root :to => 'as_notes#index'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
