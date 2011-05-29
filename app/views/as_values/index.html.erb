@@ -1,0 +1,25 @@
+<h1>Listing as_values</h1>
+
+<table>
+  <tr>
+    <th>Value</th>
+    <th>Numero</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @as_values.each do |as_value| %>
+  <tr>
+    <td><%= as_value.value %></td>
+    <td><%= as_value.numero %></td>
+    <td><%= link_to 'Show', as_value %></td>
+    <td><%= link_to 'Edit', edit_as_value_path(as_value) %></td>
+    <td><%= link_to 'Destroy', as_value, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New As value', new_as_value_path %>

@@ -1,0 +1,75 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @as_label.name %>
+</p>
+
+<p>
+  <b>Comment:</b>
+  <%= @as_label.comment %>
+</p>
+
+<p>
+  <b>Label format:</b>
+  <%= @as_label.label_format %>
+</p>
+
+<p>
+  <b>Possible values:</b>
+  <%= @as_label.possible_values %>
+</p>
+
+<p>
+  <b>Min length:</b>
+  <%= @as_label.min_length %>
+</p>
+
+<p>
+  <b>Max length:</b>
+  <%= @as_label.max_length %>
+</p>
+
+<p>
+  <b>Regexp:</b>
+  <%= @as_label.regexp %>
+</p>
+
+<p>
+  <b>Is required:</b>
+  <%= @as_label.is_required %>
+</p>
+
+<p>
+  <b>Is filter:</b>
+  <%= @as_label.is_filter %>
+</p>
+
+<p>
+  <b>Position:</b>
+  <%= @as_label.position %>
+</p>
+
+<p>
+  <b>Searchable:</b>
+  <%= @as_label.searchable %>
+</p>
+
+<p>
+  <b>Default value:</b>
+  <%= @as_label.default_value %>
+</p>
+
+<p>
+  <b>Editable:</b>
+  <%= @as_label.editable %>
+</p>
+
+<p>
+  <b>Visible:</b>
+  <%= @as_label.visible %>
+</p>
+
+
+<%= link_to 'Edit', edit_as_label_path(@as_label) %> |
+<%= link_to 'Back', as_labels_path %>

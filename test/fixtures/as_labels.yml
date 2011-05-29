@@ -1,0 +1,33 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  comment: MyText
+  label_format: MyString
+  possible_values: MyText
+  min_length: 1
+  max_length: 1
+  regexp: MyString
+  is_required: false
+  is_filter: false
+  position: 1
+  searchable: false
+  default_value: MyText
+  editable: false
+  visible: false
+
+two:
+  name: MyString
+  comment: MyText
+  label_format: MyString
+  possible_values: MyText
+  min_length: 1
+  max_length: 1
+  regexp: MyString
+  is_required: false
+  is_filter: false
+  position: 1
+  searchable: false
+  default_value: MyText
+  editable: false
+  visible: false

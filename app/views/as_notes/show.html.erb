@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @as_note.name %>
+</p>
+
+<p>
+  <b>Comment:</b>
+  <%= @as_note.comment %>
+</p>
+
+
+<%= link_to 'Edit', edit_as_note_path(@as_note) %> |
+<%= link_to 'Back', as_notes_path %>
