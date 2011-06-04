@@ -45,23 +45,8 @@ class AsValuesController < ApplicationController
   # POST /as_values.xml
   def create
     @as_note = AsNote.find(params[:as_note_id])
-    last_value = AsValue.first(:select=>:numero,:order=>"numero DESC")
-    if last_value then
-      numero = last_value.numero + 1
-    else
-      numero = 0
-    end
     values = params[:content]
-
-    AsValue.transaction do
-      values.each do |value|
-        @as_value = AsValue.new
-        @as_value.numero = numero
-        @as_value.as_label_id = value[0]
-        @as_value.value = value[1]
-        @as_value.save
-      end
-    end
+    AsValue.save_entire_record(values,@as_note)
 
     respond_to do |format|
       format.html { redirect_to as_note_as_values_url(@as_note) }
