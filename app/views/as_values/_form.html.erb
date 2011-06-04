@@ -1,25 +1,12 @@
-<%= form_for(@as_value) do |f| %>
-  <% if @as_value.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@as_value.errors.count, "error") %> prohibited this as_value from being saved:</h2>
-
-      <ul>
-      <% @as_value.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+<% form_tag(:action=>"create") do %>
+  <% @as_note.as_labels.each do |as_label| %>
+    <div class="field">
+      <%= as_label.name %> 
+      <%= text_area "content", value={as_label.id=>""}, :rows=>2, :cols=>30 %>
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :value %><br />
-    <%= f.text_area :value %>
-  </div>
-  <div class="field">
-    <%= f.label :numero %><br />
-    <%= f.text_field :numero %>
-  </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= submit_tag "Create" %>
   </div>
 <% end %>

@@ -4,9 +4,7 @@ AsThing::Application.routes.draw do
   #match 'as_notes/:id/editlabels' => 'as_notes#editlabels'
 
   resources :as_notes do
-    resources :as_labels do
-      resources :as_values
-    end
+    resources :as_labels, :as_values
   end
 
   root :to => 'as_notes#index'

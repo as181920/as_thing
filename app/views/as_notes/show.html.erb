@@ -18,3 +18,6 @@
 <BR />
 <BR />
 <%= link_to "List Labels for #{@as_note.name}", as_note_as_labels_path(@as_note) %>
+<BR />
+<BR />
+<%= link_to "List data for #{@as_note.name}", {:action=>'showdata',:id=>@as_note} %>
