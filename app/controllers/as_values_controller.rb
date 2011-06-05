@@ -19,7 +19,7 @@ class AsValuesController < ApplicationController
   def show
     @as_note = AsNote.find(params[:as_note_id])
     @labels = @as_note.get_sorted_labels(@as_note)
-    @numero = params[:numero]
+    @numero = params[:id]
 
     respond_to do |format|
       format.html # show.html.erb
@@ -43,7 +43,9 @@ class AsValuesController < ApplicationController
 
   # GET /as_values/1/edit
   def edit
-    @as_value = AsValue.find(params[:id])
+    @as_note = AsNote.find(params[:as_note_id])
+    @labels = @as_note.get_sorted_labels(@as_note)
+    @numero = params[:id]
   end
 
   # POST /as_values
@@ -51,7 +53,7 @@ class AsValuesController < ApplicationController
   def create
     @as_note = AsNote.find(params[:as_note_id])
     values = params[:content]
-    AsValue.save_entire_record(values,@as_note)
+    AsValue.save_entire_record(values)
 
     respond_to do |format|
       format.html { redirect_to as_note_as_values_url(@as_note) }
@@ -72,28 +74,28 @@ end
   # PUT /as_values/1
   # PUT /as_values/1.xml
   def update
-    @as_value = AsValue.find(params[:id])
+    @as_note = AsNote.find(params[:as_note_id])
+    @numero = params[:id]
+    values = params[:content]
+    AsValue.update_entire_record(@numero,values)
 
     respond_to do |format|
-      if @as_value.update_attributes(params[:as_value])
-        format.html { redirect_to(@as_value, :notice => 'As value was successfully updated.') }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @as_value.errors, :status => :unprocessable_entity }
-      end
+      format.html { redirect_to as_note_as_value_url(@as_note,@numero) }
+      #format.xml  { render :xml => @as_value, :status => :created, :location => @as_value }
     end
   end
 
   # DELETE /as_values/1
   # DELETE /as_values/1.xml
   def destroy
-    @as_value = AsValue.find(params[:id])
-    @as_value.destroy
+    @as_note = AsNote.find(params[:as_note_id])
+    @numero = params[:id]
+    AsValue.delete_entire_record(@numero)
 
     respond_to do |format|
-      format.html { redirect_to(as_values_url) }
-      format.xml  { head :ok }
+      format.html { redirect_to as_note_as_values_url(@as_note) }
+      #format.xml  { head :ok }
     end
   end
+
 end

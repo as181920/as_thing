@@ -1,4 +1,7 @@
-<h1>Listing Records</h1>
+<!--<h1>Listing Records</h1>-->
+<%= link_to 'Home', as_notes_path %> |
+<%= link_to 'Setting', @as_note %> |
+<%= link_to 'New', new_as_note_as_value_path(@as_note) %>
 
 <table>
   <tr>
@@ -6,6 +9,7 @@
     <% @labels.each do |as_label| %>
     <th><%= as_label.name %></th>
     <% end %>
+    <th></th>
     <th></th>
   </tr>
 
@@ -15,14 +19,8 @@
     <% @labels.each do |as_label| %>
       <td><pre><%= AsValue.current_value(v.numero, as_label.id) %></pre></td>
     <% end %>
-    <!-- todo the edit link need to modify -->
-    <!--
-    <td>< link_to 'Edit', edit_as_value_path(as_value) ></td>
-    -->
+    <td><%= link_to 'Edit', edit_as_note_as_value_path(@as_note, v.numero) %></td>
+    <td><%= link_to 'Destroy', as_note_as_value_path(@as_note,v.numero), :confirm=>'Are you sure?', :method=>:delete %></td>
   </tr>
   <% end %>
 </table>
-
-<%= link_to 'Home', as_notes_path %> |
-<%= link_to 'Setting', @as_note %> |
-<%= link_to 'New', new_as_note_as_value_path(@as_note) %>

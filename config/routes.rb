@@ -1,10 +1,10 @@
 AsThing::Application.routes.draw do
 
-  match 'as_notes/:as_note_id/as_values/new' => 'as_values#new'
-  match 'as_notes/:as_note_id/as_values/:numero' => 'as_values#show'
+  #post 'as_notes/:as_note_id/as_values/:numero' => 'as_values#update'
 
   resources :as_notes do
-    resources :as_labels, :as_values
+    resources :as_labels
+    resources :as_values
   end
 
   root :to => 'as_notes#index'

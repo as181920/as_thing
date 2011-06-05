@@ -1,6 +1,9 @@
-<h1>Editing as_value</h1>
+<h1>Editing Record</h1>
 
-<%= render 'form' %>
+<%= form_tag({:action=>"update"},:method=>"put") do %>
+  <%= render 'form_content' %>
+<% end %>
 
-<%= link_to 'Show', @as_value %> |
-<%= link_to 'Back', as_values_path %>
+<BR />
+<%= link_to 'Back', as_note_as_values_path(@as_note) %> |
+<%= link_to 'Show', as_note_as_value_path(@as_note,@numero) %>
