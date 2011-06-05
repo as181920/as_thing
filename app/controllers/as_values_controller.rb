@@ -5,7 +5,7 @@ class AsValuesController < ApplicationController
     @as_note = AsNote.find(params[:as_note_id])
     @labels = @as_note.get_sorted_labels(@as_note)
     #@numeros = @as_note.as_labels.first.as_values.all(:select=>"numero",:order=>"numero DESC").collect{|n| n.numero}
-    #todo ..when values/label is nil
+    #todo ..when label is nil
     @l1_values = @as_note.as_labels.first.as_values.all(:select=>"id,numero,value", :order=>"numero DESC")
 
     respond_to do |format|
