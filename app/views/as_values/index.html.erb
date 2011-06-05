@@ -1,27 +1,28 @@
-<h1>Listing as_values</h1>
+<h1>Listing Records</h1>
 
 <table>
   <tr>
-    <th>Value</th>
     <th>Numero</th>
-    <th></th>
-    <th></th>
+    <% @labels.each do |as_label| %>
+    <th><%= as_label.name %></th>
+    <% end %>
     <th></th>
   </tr>
 
-<% @as_values.each do |as_value| %>
+  <% @l1_values.each do |v| %>
   <tr>
-    <td><%= as_value.value %></td>
-    <td><%= as_value.numero %></td>
-    <td><%= link_to 'Show', as_value %></td>
-    <td><%= link_to 'Edit', edit_as_value_path(as_value) %></td>
-    <td><%= link_to 'Destroy', as_value, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to v.numero, as_note_as_values_path(@as_note) %></td>
+    <% @labels.each do |as_label| %>
+      <td><pre><%= AsValue.first(:select=>"value",:conditions=>["numero=? and as_label_id=?",v.numero,as_label.id]).value %></pre></td>
+    <% end %>
+    <!-- todo the edit link need to modify -->
+    <!--
+    <td>< link_to 'Edit', edit_as_value_path(as_value) ></td>
+    -->
   </tr>
-<% end %>
+  <% end %>
 </table>
 
-<br />
-
-<%= link_to 'Back to Home', as_notes_path %> |
-<%= link_to 'Back to Note', @as_note %> |
-<%= link_to 'New Record', new_as_note_as_value_path(@as_note) %>
+<%= link_to 'Home', as_notes_path %> |
+<%= link_to 'Setting', @as_note %> |
+<%= link_to 'New', new_as_note_as_value_path(@as_note) %>

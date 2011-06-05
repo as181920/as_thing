@@ -3,10 +3,10 @@ class AsValuesController < ApplicationController
   # GET /as_values.xml
   def index
     @as_note = AsNote.find(params[:as_note_id])
-    @as_labels = @as_note.as_labels
-    #@as_values = AsValue.all
-    #todo ..when as_values=nil
-    @as_values=[]
+    @labels = @as_note.get_sorted_labels(@as_note)
+    #@numeros = @as_note.as_labels.first.as_values.all(:select=>"numero",:order=>"numero DESC").collect{|n| n.numero}
+    #todo ..when values/label is nil
+    @l1_values = @as_note.as_labels.first.as_values.all(:select=>"id,numero,value", :order=>"numero DESC")
 
     respond_to do |format|
       format.html # index.html.erb
@@ -29,7 +29,9 @@ class AsValuesController < ApplicationController
   # GET /as_values/new.xml
   def new
     @as_note = AsNote.find(params[:as_note_id])
-    @labels = @as_note.as_labels #todo: sort by position
+    #todo: modify get_sorted_labels method
+    #@labels = @as_note.as_labels
+    @labels = @as_note.get_sorted_labels(@as_note)
 
     respond_to do |format|
       format.html # new.html.erb
