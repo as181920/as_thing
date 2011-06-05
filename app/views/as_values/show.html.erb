@@ -1,15 +1,13 @@
 <p id="notice"><%= notice %></p>
 
+<h1>Record Detail:</h1>
+
+<% @labels.each do |as_label| %>
 <p>
-  <b>Value:</b>
-  <%= @as_value.value %>
+  <b><%= as_label.name %>:</b>
+  <pre><%= AsValue.current_value(@numero,as_label.id) %></pre>
 </p>
+<% end %>
 
-<p>
-  <b>Numero:</b>
-  <%= @as_value.numero %>
-</p>
-
-
-<%= link_to 'Back', as_values_path %>
-<%= link_to 'Edit', edit_as_value_path(@as_value) %> |
+<%= link_to 'Back', as_note_as_values_path(@as_note) %> |
+<%= link_to 'Edit', edit_as_note_as_value_path(@as_note, @numero) %>

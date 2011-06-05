@@ -19,4 +19,14 @@ class AsValue < ActiveRecord::Base
       end
     end
   end
+
+  def self.current_value(numero,label_id)
+    current_record = AsValue.first(:select=>"value",:conditions=>["numero=? and as_label_id=?",numero,label_id])
+    if current_record then
+      current_record.value
+    else
+      nil
+    end
+  end
+
 end

@@ -17,7 +17,9 @@ class AsValuesController < ApplicationController
   # GET /as_values/1
   # GET /as_values/1.xml
   def show
-    @as_value = AsValue.find(params[:id])
+    @as_note = AsNote.find(params[:as_note_id])
+    @labels = @as_note.get_sorted_labels(@as_note)
+    @numero = params[:numero]
 
     respond_to do |format|
       format.html # show.html.erb

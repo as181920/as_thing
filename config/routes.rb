@@ -1,7 +1,7 @@
 AsThing::Application.routes.draw do
 
-  match 'as_notes/:id/showdata' => 'as_notes#showdata'
-  #match 'as_notes/:id/editlabels' => 'as_notes#editlabels'
+  match 'as_notes/:as_note_id/as_values/new' => 'as_values#new'
+  match 'as_notes/:as_note_id/as_values/:numero' => 'as_values#show'
 
   resources :as_notes do
     resources :as_labels, :as_values
