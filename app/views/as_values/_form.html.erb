@@ -1,5 +1,5 @@
 <% form_tag(:action=>"create") do %>
-  <% @as_note.as_labels.each do |as_label| %>
+  <% @labels.each do |as_label| %>
     <div class="field">
       <%= as_label.name %> 
       <%= text_area "content", value={as_label.id=>""}, :rows=>2, :cols=>30 %>

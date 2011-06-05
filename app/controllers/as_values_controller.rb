@@ -29,6 +29,7 @@ class AsValuesController < ApplicationController
   # GET /as_values/new.xml
   def new
     @as_note = AsNote.find(params[:as_note_id])
+    @labels = @as_note.as_labels #todo: sort by position
 
     respond_to do |format|
       format.html # new.html.erb
