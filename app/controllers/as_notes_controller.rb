@@ -21,11 +21,6 @@ class AsNotesController < ApplicationController
     end
   end
 
-  # GET /as_notes/1/showdata
-  def showdata
-    @as_note = AsNote.find(params[:id])
-  end
-
   # GET /as_notes/new
   # GET /as_notes/new.xml
   def new

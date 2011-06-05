@@ -11,11 +11,10 @@
 
 <% @as_notes.each do |as_note| %>
   <tr>
-    <td><%= link_to as_note.name, {:action=>"showdata", :id=>as_note} %></td>
+    <td><%= link_to as_note.name, as_note_as_values_path(as_note) %></td>
     <td><%= as_note.comment %></td>
-    <td><%= link_to 'Show', as_note %></td>
-    <td><%= link_to 'Edit', edit_as_note_path(as_note) %></td>
-    <td><%= link_to 'Destroy', as_note, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'Setting', as_note %></td>
+    <td></td>
   </tr>
 <% end %>
 </table>
