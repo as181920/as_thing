@@ -80,7 +80,8 @@ end
     AsValue.update_entire_record(@numero,values)
 
     respond_to do |format|
-      format.html { redirect_to as_note_as_value_url(@as_note,@numero) }
+      format.html { redirect_to as_note_as_values_url(@as_note) }
+      #format.html { redirect_to as_note_as_value_url(@as_note,@numero) }
       #format.xml  { render :xml => @as_value, :status => :created, :location => @as_value }
     end
   end
