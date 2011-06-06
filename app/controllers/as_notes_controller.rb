@@ -73,7 +73,7 @@ class AsNotesController < ApplicationController
   # DELETE /as_notes/1.xml
   def destroy
     @as_note = AsNote.find(params[:id])
-    @as_note.destroy
+    @as_note.destroy_all_releated_data(@as_note)
 
     respond_to do |format|
       format.html { redirect_to(as_notes_url) }
