@@ -79,7 +79,8 @@ class AsLabelsController < ApplicationController
   # DELETE /as_labels/1.xml
   def destroy
     @as_label = AsLabel.find(params[:id])
-    @as_label.destroy_all_releated_data(@as_label)
+    #@as_label.destroy_all_releated_data(@as_label)
+    @as_label.destroy
 
     respond_to do |format|
       format.html { redirect_to as_note_as_labels_url(@as_note) }

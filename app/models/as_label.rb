@@ -1,5 +1,5 @@
 class AsLabel < ActiveRecord::Base
-  has_many :as_values
+  has_many :as_values, :dependent => :destroy
   belongs_to :as_note
 
   validates_presence_of :name
