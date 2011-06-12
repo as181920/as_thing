@@ -21,7 +21,7 @@
   </div>
   <div class="field">
     <%= f.label :label_format %><br />
-    <%= f.text_field :label_format %>
+    <%= f.select(:label_format,["","String","Text","Date","Select","Checkbox","Radio"]) %>
   </div>
   <div class="field">
     <%= f.label :possible_values %><br />
