@@ -5,7 +5,7 @@
 <% @labels.each do |as_label| %>
 <p>
   <b><%= as_label.name %>:</b>
-  <pre><%= AsValue.current_value(@numero,as_label.id) %></pre>
+  <pre><%= raw AsValue.current_value(@numero,as_label.id) %></pre>
 </p>
 <% end %>
 

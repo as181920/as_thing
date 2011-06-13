@@ -3,9 +3,11 @@
     <%= as_label.name %> 
 		<% case as_label.label_format %>
 			<% when "String" %>
-			<%= text_field_tag("content[#{as_label.id}]", AsValue.current_value(@numero,as_label.id)) %>
+			<%= text_field_tag("content[#{as_label.id}]", AsValue.current_value(@numero,as_label.id),:size=>"78") %>
 			<% when "Date" %>
 			<%= text_field_tag("content[#{as_label.id}]", AsValue.current_value(@numero,as_label.id)) %>
+			<% when "Numeric" %>
+			<%= text_field_tag("content[#{as_label.id}]", AsValue.current_value(@numero,as_label.id),:size=>"5") %>
 			<% when "Select" %>
 			<% when "Checkbox" %>
 			<% when "Radio" %>
