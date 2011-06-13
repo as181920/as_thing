@@ -1,19 +1,20 @@
 <% @labels.each do |as_label| %>
   <div class="field">
-    <%= as_label.name %> 
+    <%= as_label.name %> <BR />
 		<% case as_label.label_format %>
-			<% when "String" %>
-			<%= text_field_tag("content[#{as_label.id}]", AsValue.current_value(@numero,as_label.id),:size=>"78") %>
-			<% when "Date" %>
+		<% when "String" %>
+			<%= text_field_tag("content[#{as_label.id}]", AsValue.current_value(@numero,as_label.id),:size=>"52") %>
+		<% when "Date" %>
 			<%= text_field_tag("content[#{as_label.id}]", AsValue.current_value(@numero,as_label.id)) %>
-			<% when "Numeric" %>
+		<% when "Numeric" %>
 			<%= text_field_tag("content[#{as_label.id}]", AsValue.current_value(@numero,as_label.id),:size=>"5") %>
-			<% when "Select" %>
-			<% when "Checkbox" %>
-			<% when "Radio" %>
-			<% when "Text" %>
-      <%= text_area_tag("content[#{as_label.id}]", AsValue.current_value(@numero,as_label.id), :class => "mceEditor", :size=>"100x15") %>
-			<% else %>
+		<% when "Select" %>
+		<%= select_tag("content[#{as_label.id}]", options_for_select(as_label.possible_values.split,AsValue.current_value(@numero,as_label.id))) %>
+		<% when "Checkbox" %>
+		<% when "Radio" %>
+		<% when "Text" %>
+      <%= text_area_tag("content[#{as_label.id}]", AsValue.current_value(@numero,as_label.id), :class => "mceEditor", :size=>"60x12") %>
+		<% else %>
       <%= text_area_tag("content[#{as_label.id}]", AsValue.current_value(@numero,as_label.id), :class => "mceEditor") %>
 		<% end %>
   </div>

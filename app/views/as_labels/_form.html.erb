@@ -24,8 +24,8 @@
     <%= f.select(:label_format,["","String","Text","Date","Numeric","Select","Checkbox","Radio"]) %>
   </div>
   <div class="field">
-    <%= f.label :possible_values %><br />
-    <%= f.text_area :possible_values %>
+    <%= f.label :possible_values %>  (splited by space)<br />
+		<%= f.text_area :possible_values %>
   </div>
   <div class="field">
     <%= f.label :min_length %><br />

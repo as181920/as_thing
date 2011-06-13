@@ -10,6 +10,7 @@ class AsValuesController < ApplicationController
       redirect_to(@as_note, :notice =>'Should add labels first.')
     else
       @l1_values = @as_note.as_labels.first.as_values.all(:select=>"id,numero,value", :order=>"numero DESC")
+      #@l1_values = @as_note.as_labels.first.as_values.all(:select=>"id,numero,value", :order=>"updated_at DESC")
     end
   end
 

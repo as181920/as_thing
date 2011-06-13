@@ -8,7 +8,7 @@ body, p, ol, ul, td {
 
 pre {
   /* background-color: #eee; */
-  background-color: #fff;
+  background-color: #E5F1F4
   padding: 10px;
   font-size: 11px;
 }
@@ -55,3 +55,80 @@ div.field, div.actions {
   font-size: 12px;
   list-style: square;
 }
+
+table {
+  border-collapse:collapse;
+  margin:1em 0;
+  width:100%;
+}
+th, td {
+  border:1px solid #FFFFFF;
+  padding:0.5em;
+  text-align:left;
+}
+th {
+  -moz-background-clip:border;
+  -moz-background-inline-policy:continuous;
+  -moz-background-origin:padding;
+  background:#328AA4 url(tr_back.gif) repeat-x scroll 0 0;
+  color:#FFFFFF;
+}
+td {
+  -moz-background-clip:border;
+  -moz-background-inline-policy:continuous;
+  -moz-background-origin:padding;
+  background:#E5F1F4 none repeat scroll 0 0;
+}
+tr.even td {
+  -moz-background-clip:border;
+  -moz-background-inline-policy:continuous;
+  -moz-background-origin:padding;
+  background:#E5F1F4 none repeat scroll 0 0;
+}
+tr.odd td {
+  -moz-background-clip:border;
+  -moz-background-inline-policy:continuous;
+  -moz-background-origin:padding;
+  background:#F8FBFC none repeat scroll 0 0;
+}
+th.over, tr.even th.over, tr.odd th.over {
+  -moz-background-clip:border;
+  -moz-background-inline-policy:continuous;
+  -moz-background-origin:padding;
+  background:#4A98AF none repeat scroll 0 0;
+}
+th.down, tr.even th.down, tr.odd th.down {
+  -moz-background-clip:border;
+  -moz-background-inline-policy:continuous;
+  -moz-background-origin:padding;
+  background:#BCE774 none repeat scroll 0 0;
+}
+th.selected, tr.even th.selected, tr.odd th.selected {
+}
+td.over, tr.even td.over, tr.odd td.over {
+  -moz-background-clip:border;
+  -moz-background-inline-policy:continuous;
+  -moz-background-origin:padding;
+  background:#ECFBD4 none repeat scroll 0 0;
+}
+td.down, tr.even td.down, tr.odd td.down {
+  -moz-background-clip:border;
+  -moz-background-inline-policy:continuous;
+  -moz-background-origin:padding;
+  background:#BCE774 none repeat scroll 0 0;
+  color:#FFFFFF;
+}
+td.selected, tr.even td.selected, tr.odd td.selected {
+  -moz-background-clip:border;
+  -moz-background-inline-policy:continuous;
+  -moz-background-origin:padding;
+  background:#BCE774 none repeat scroll 0 0;
+  color:#555555;
+}
+td.empty, tr.odd td.empty, tr.even td.empty {
+  -moz-background-clip:border;
+  -moz-background-inline-policy:continuous;
+  -moz-background-origin:padding;
+  background:#FFFFFF none repeat scroll 0 0;
+}
+
