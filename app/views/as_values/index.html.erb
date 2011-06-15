@@ -1,5 +1,5 @@
 <!--<h1>Listing Records</h1>-->
-<%= link_to 'Home', as_notes_path %> |
+<!-- link_to 'Home', as_notes_path -->
 <%= link_to 'Setting', @as_note %> |
 <%= link_to 'New', new_as_note_as_value_path(@as_note) %>
 
@@ -17,7 +17,14 @@
   <tr>
     <td><%= link_to v.numero, as_note_as_value_path(@as_note, v.numero) %></td>
     <% @labels.each do |as_label| %>
-      <td><pre><%= raw AsValue.current_value(v.numero, as_label.id) %></pre></td>
+			<% case as_label.label_format %>
+			<% when "Datee" %>
+        <td><pre><%= Date.parse(AsValue.current_value(v.numero,as_label.id)||Date.today.to_s) %></pre></td>
+			<% when "Text" %>
+				<td><pre><%= raw AsValue.current_value(v.numero, as_label.id) %></pre></td>
+			<% else %>
+				<td><pre><%= AsValue.current_value(v.numero, as_label.id) %></pre></td>
+			<% end %>
     <% end %>
     <td><%= link_to 'Edit', edit_as_note_as_value_path(@as_note, v.numero) %></td>
     <td><%= link_to 'Destroy', as_note_as_value_path(@as_note,v.numero), :confirm=>'Are you sure?', :method=>:delete %></td>
