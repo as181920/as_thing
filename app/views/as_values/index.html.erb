@@ -1,7 +1,8 @@
 <!--<h1>Listing Records</h1>-->
 <!-- link_to 'Home', as_notes_path -->
+<b> <%= @as_note.name %>: </b> (
 <%= link_to 'Setting', @as_note %> |
-<%= link_to 'New', new_as_note_as_value_path(@as_note) %>
+<%= link_to 'New', new_as_note_as_value_path(@as_note) %> )
 
 <table>
   <tr>
