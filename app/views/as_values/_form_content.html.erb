@@ -24,8 +24,8 @@
 			<%= text_field_tag("content[#{as_label.id}]", AsValue.current_value(@numero,as_label.id),:size=>"5") %>
 		<% when "Select" %>
 		<%= select_tag("content[#{as_label.id}]", options_for_select(as_label.possible_values.split,AsValue.current_value(@numero,as_label.id))) %>
-		<% when "Checkbox" %>
-		<% when "Radio" %>
+		<% when "MultiSelect" %>
+		<%= select_tag("content[#{as_label.id}]", options_for_select(as_label.possible_values.split,AsValue.current_value(@numero,as_label.id)),:multiple=>true) %>
 		<% when "Text" %>
       <%= text_area_tag("content[#{as_label.id}]", AsValue.current_value(@numero,as_label.id), :class => "mceEditor", :size=>"60x12") %>
 		<% else %>
