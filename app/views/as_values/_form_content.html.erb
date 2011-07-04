@@ -13,7 +13,12 @@
       </script>
       <!-- select_date Date.parse(AsValue.current_value(@numero,as_label.id)||Date.today.to_s),:prefix=>"content[#{as_label.id}]", :start_year=>1970,:end_year=>2020 -->
 		<% when "Time" %>
-			<%= text_field_tag("content[#{as_label.id}]", AsValue.current_value(@numero,as_label.id),:size=>"52") %>
+			<%= text_field_tag("content[#{as_label.id}]", AsValue.current_value(@numero,as_label.id),:size=>"15") %>
+      <script language="JavaScript">
+      $(document).ready(function() {
+				$("#content_<%= as_label.id %>").datetimepicker();
+      });
+      </script>
       <!-- select_datetime Time.parse(AsValue.current_value(@numero,as_label.id)||Time.now.to_s),:prefix=>"content[#{as_label.id}]", :start_year=>1970,:end_year=>2020 -->
 		<% when "Numeric" %>
 			<%= text_field_tag("content[#{as_label.id}]", AsValue.current_value(@numero,as_label.id),:size=>"5") %>
