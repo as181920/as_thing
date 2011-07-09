@@ -5,12 +5,20 @@ class AsValuesController < ApplicationController
     @as_note = AsNote.find(params[:as_note_id])
     @labels = @as_note.get_sorted_labels(@as_note)
     #@numeros = @as_note.as_labels.first.as_values.all(:select=>"numero",:order=>"numero DESC").collect{|n| n.numero}
-    #todo ..when label is nil
+    #todo ..when label is nil, optimize the handle method, consider use self_defined validation method
     unless @as_note.as_labels.first
       redirect_to(@as_note, :notice =>'Should add labels first.')
     else
-      @l1_values = @as_note.as_labels.first.as_values.all(:select=>"id,numero,value", :order=>"numero DESC")
-      #@l1_values = @as_note.as_labels.first.as_values.all(:select=>"id,numero,value", :order=>"updated_at DESC")
+      #todo asc,desc
+      @direction = params[:direction] == "desc" ? "asc" : "desc"
+      case params[:sort]
+      when nil
+        @l_values = @as_note.as_labels.first.as_values.all(:select=>"id,numero,value", :order=>"numero desc")
+      when "No."
+        @l_values = @as_note.as_labels.first.as_values.all(:select=>"id,numero,value", :order=>"numero "+@direction)
+      else
+        @l_values = @as_note.as_labels.find_by_name(params[:sort]).as_values.all(:select=>"id,numero,value", :order=>"value "+@direction)
+      end
     end
   end
 

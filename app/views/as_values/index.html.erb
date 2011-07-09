@@ -6,15 +6,16 @@
 
 <table>
   <tr>
-    <th>No.</th>
+		<th><%= link_to "No.", {:sort=>"No.", :direction=>@direction}, {:class=>"current #{params[:sort] == 'No.' ? (params[:direction] == 'desc' ? 'asc' : 'desc') : nil}"} %></th>
     <% @labels.each do |as_label| %>
-    <th><%= as_label.name %></th>
+		<th><%= link_to as_label.name, {:sort=>as_label.name, :direction=>@direction}, {:class=>"current #{as_label.name == params[:sort] ? (params[:direction] == 'desc' ? 'asc' : 'desc') : nil}"} %></th>
+
     <% end %>
     <th></th>
     <th></th>
   </tr>
 
-  <% @l1_values.each do |v| %>
+  <% @l_values.each do |v| %>
   <tr>
     <td><%= link_to v.numero, as_note_as_value_path(@as_note, v.numero) %></td>
     <% @labels.each do |as_label| %>
