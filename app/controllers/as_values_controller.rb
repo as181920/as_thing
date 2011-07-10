@@ -11,6 +11,7 @@ class AsValuesController < ApplicationController
     else
       #todo asc,desc
       @direction = params[:direction] == "desc" ? "asc" : "desc"
+      @records_count = @as_note.as_labels.first.as_values.count
       case params[:sort]
       when nil
         @l_values = @as_note.as_labels.first.as_values.order("numero desc").page(params[:page]).per(10)
