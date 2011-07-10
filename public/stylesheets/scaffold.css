@@ -70,7 +70,7 @@ th {
   -moz-background-clip:border;
   -moz-background-inline-policy:continuous;
   -moz-background-origin:padding;
-  color:#FFFFFF;
+  /*color:#FFFFFF;*/
   padding-right: 12px;
 }
 td {

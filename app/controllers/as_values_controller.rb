@@ -13,11 +13,11 @@ class AsValuesController < ApplicationController
       @direction = params[:direction] == "desc" ? "asc" : "desc"
       case params[:sort]
       when nil
-        @l_values = @as_note.as_labels.first.as_values.all(:select=>"id,numero,value", :order=>"numero desc")
+        @l_values = @as_note.as_labels.first.as_values.order("numero desc").page(params[:page]).per(10)
       when "No."
-        @l_values = @as_note.as_labels.first.as_values.all(:select=>"id,numero,value", :order=>"numero "+@direction)
+        @l_values = @as_note.as_labels.first.as_values.order("numero "+@direction).page(params[:page]).per(10)
       else
-        @l_values = @as_note.as_labels.find_by_name(params[:sort]).as_values.all(:select=>"id,numero,value", :order=>"value "+@direction)
+        @l_values = @as_note.as_labels.find_by_name(params[:sort]).as_values.order("value "+@direction).page(params[:page]).per(10)
       end
     end
   end
