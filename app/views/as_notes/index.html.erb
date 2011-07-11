@@ -7,7 +7,6 @@
     <th>Name</th>
     <th>Comment</th>
     <th></th>
-    <th></th>
   </tr>
 
 <% @as_notes.each do |as_note| %>
@@ -15,7 +14,6 @@
     <td><%= link_to as_note.name, as_note_as_values_path(as_note) %></td>
     <td><pre><%= raw as_note.comment %></pre></td>
     <td><%= link_to 'Setting', as_note %></td>
-    <td></td>
   </tr>
 <% end %>
 </table>
