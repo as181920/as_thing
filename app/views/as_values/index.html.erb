@@ -4,9 +4,9 @@
 <%= link_to 'Setting', @as_note %> |
 <%= link_to 'New', new_as_note_as_value_path(@as_note) %> )
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<%= paginate @l_values %>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 Total:  <%= @records_count %> Records
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<%= paginate @l_values %>
 
 <table>
   <tr>
@@ -37,3 +37,4 @@ Total:  <%= @records_count %> Records
   </tr>
   <% end %>
 </table>
+<%= paginate @l_values %>
