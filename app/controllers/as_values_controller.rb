@@ -14,11 +14,11 @@ class AsValuesController < ApplicationController
       @records_count = @as_note.as_labels.first.as_values.count
       case params[:sort]
       when nil
-        @l_values = @as_note.as_labels.first.as_values.order("numero desc").page(params[:page]).per(10)
+        @l_values = @as_note.as_labels.first.as_values.order("numero desc").page(params[:page]).per(15)
       when "No."
-        @l_values = @as_note.as_labels.first.as_values.order("numero "+@direction).page(params[:page]).per(10)
+        @l_values = @as_note.as_labels.first.as_values.order("numero "+@direction).page(params[:page]).per(15)
       else
-        @l_values = @as_note.as_labels.find_by_name(params[:sort]).as_values.order("value "+@direction).page(params[:page]).per(10)
+        @l_values = @as_note.as_labels.find_by_name(params[:sort]).as_values.order("value "+@direction).page(params[:page]).per(15)
       end
     end
   end
