@@ -27,7 +27,7 @@ Total:  <%= @records_count %> Records
 			<% when "Datee" %>
         <td><pre><%= Date.parse(AsValue.current_value(v.numero,as_label.id)||Date.today.to_s) %></pre></td>
 			<% when "Text" %>
-				<td><pre><%= raw AsValue.current_value(v.numero, as_label.id) %></pre></td>
+				<td><%= raw AsValue.current_value(v.numero, as_label.id) %></td>
 			<% else %>
 				<td><pre><%= AsValue.current_value(v.numero, as_label.id) %></pre></td>
 			<% end %>
