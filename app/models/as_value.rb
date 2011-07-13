@@ -33,7 +33,14 @@ class AsValue < ActiveRecord::Base
     AsValue.transaction do
       values.each do |value|
         @as_value = AsValue.first(:conditions=>["numero=? and as_label_id=?",numero,value[0]])
-        @as_value.value = value[1]
+        if @as_value then
+          @as_value.value = value[1]
+        else
+          @as_value = AsValue.new
+          @as_value.numero = numero
+          @as_value.as_label_id = value[0]
+          @as_value.value = value[1]
+        end
         @as_value.save
       end
     end
