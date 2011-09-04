@@ -17,7 +17,7 @@ AsThing::Application.routes.draw do
   resources :sessions
 
   #root :to => 'as_notes#index'
-  root :to => "users#new"
+  root :to => "sessions#new"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
