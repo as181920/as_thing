@@ -136,3 +136,8 @@ th .asc {
 th .desc {
   background-image: url(/images/down_arrow.gif);
 }
+
+div#logo_side {float: left; color: black; font-size: 14pt; font-weight:bold;}
+div#user_side {float: right; color: blue; }
+div#main {position: absolute;left: 10px; top: 30px }
+div#border1 {background-color:green;height:10px;}

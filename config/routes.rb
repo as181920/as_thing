@@ -1,5 +1,7 @@
 AsThing::Application.routes.draw do
 
+  get "sessions/new"
+
   #post 'as_notes/:as_note_id/as_values/:numero' => 'as_values#update'
 
   resources :as_notes do
@@ -7,7 +9,15 @@ AsThing::Application.routes.draw do
     resources :as_values
   end
 
-  root :to => 'as_notes#index'
+  get "log_in" => "sessions#new", :as => "log_in"
+  get "log_out" => "sessions#destroy", :as => "log_out"
+  get "sign_up" => "users#new", :as => "sign_up"
+
+  resources :users
+  resources :sessions
+
+  #root :to => 'as_notes#index'
+  root :to => "users#new"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110529062716) do
+ActiveRecord::Schema.define(:version => 20110904094013) do
 
   create_table "as_labels", :force => true do |t|
     t.string   "name"
@@ -45,6 +45,14 @@ ActiveRecord::Schema.define(:version => 20110529062716) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "as_label_id"
+  end
+
+  create_table "users", :force => true do |t|
+    t.string   "email"
+    t.string   "password_hash"
+    t.string   "password_salt"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end

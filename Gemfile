@@ -3,6 +3,7 @@ source 'http://rubygems.org'
 gem 'rails', '3.0.0'
 gem "jquery-rails"
 gem "kaminari"
+gem "bcrypt-ruby", :require => "bcrypt"
 
 
 # Bundle edge Rails instead:

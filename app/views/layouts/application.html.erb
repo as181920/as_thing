@@ -10,11 +10,32 @@
   <%= include_tiny_mce_if_needed %>
 
 </head>
-<body>
-	<h3><%= link_to 'Notes (note anything you want to remember)', as_notes_path %></h3>
-	<HR />
+<body id="head_side">
+  <div>
+    <div id="logo_side">
+      <%= link_to "Notes (note anything you want to remember)", as_notes_path %>
+    </div>
+    <div id="user_side">
+      <% if current_user %>
+        <%= current_user.email %> |
+        <%= link_to "Log out", log_out_path %>
+      <% else %>
+        <%= link_to "Log in", log_in_path %> or 
+        <%= link_to "Sign up", sign_up_path %>
+      <% end %>
+    </div>
+  </div>
+  <div id="main">
+    <div id="border1">
+      <p>-----------------------------------------------------------------------------------------------------------------------------------------------</p>
+    </div>
 
-	<%= yield %>
+    <% flash.each do |name,msg| %>
+      <%= content_tag :div, msg, :id=>"flash#{name}" %>
+    <% end %>
 
+    <%= yield %>
+
+  </div>
 </body>
 </html>
