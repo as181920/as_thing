@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation
+  has_many :ownerships
+  has_many :as_notes, :through => :ownerships
 
   attr_accessor :password
   before_save :encrypt_password
