@@ -1,5 +1,7 @@
 AsThing::Application.routes.draw do
 
+  resources :friendships
+
   get "sessions/new"
 
   #post 'as_notes/:as_note_id/as_values/:numero' => 'as_values#update'

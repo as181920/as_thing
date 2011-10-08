@@ -1,7 +1,10 @@
 class User < ActiveRecord::Base
-  attr_accessible :email, :password, :password_confirmation
+  has_many :friendships
+  has_many :friends, :through => :friendships
   has_many :ownerships
   has_many :as_notes, :through => :ownerships
+
+  attr_accessible :email, :password, :password_confirmation
 
   attr_accessor :password
   before_save :encrypt_password
