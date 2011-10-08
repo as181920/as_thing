@@ -1,4 +1,6 @@
 class AsValuesController < ApplicationController
+  before_filter :require_owned
+
   # GET /as_values
   # GET /as_values.xml
   def index

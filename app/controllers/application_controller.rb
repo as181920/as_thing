@@ -16,4 +16,11 @@ class ApplicationController < ActionController::Base
       redirect_to root_url, :notice=>"login required!"
     end
   end
+
+  def require_owned
+    if AsNote.find(params["as_note_id"]).users.include? current_user then
+    else
+      redirect_to root_url, :notice=>"not permitted!"
+    end
+  end
 end

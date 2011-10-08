@@ -1,4 +1,6 @@
 class AsLabelsController < ApplicationController
+  before_filter :require_owned
+
   # GET /as_labels
   # GET /as_labels.xml
   def index
