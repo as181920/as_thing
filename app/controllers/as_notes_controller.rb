@@ -5,6 +5,7 @@ class AsNotesController < ApplicationController
   # GET /as_notes.xml
   def index
     @as_notes = AsNote.all
+    #@as_notes = current_user.as_notes
 
     respond_to do |format|
       format.html # index.html.erb

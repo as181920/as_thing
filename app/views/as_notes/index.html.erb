@@ -6,14 +6,16 @@
   <tr>
     <th>Name</th>
     <th>Comment</th>
-    <th></th>
+    <th>created_at</th>
+    <th>updated_at</th>
   </tr>
 
 <% @as_notes.each do |as_note| %>
   <tr>
     <td><%= link_to as_note.name, as_note_as_values_path(as_note) %></td>
     <td><pre><%= raw as_note.comment %></pre></td>
-    <td><%= link_to 'Setting', as_note %></td>
+    <td><%= as_note.created_at.strftime("%Y-%m-%d") %></td>
+    <td><%= as_note.as_labels.first.as_values.last["updated_at"].strftime("%Y-%m-%d") %></td>
   </tr>
 <% end %>
 </table>
