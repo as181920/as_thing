@@ -1,4 +1,6 @@
 class AsNotesController < ApplicationController
+  before_filter :require_login
+
   # GET /as_notes
   # GET /as_notes.xml
   def index
