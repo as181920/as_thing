@@ -1,5 +1,5 @@
 class AsLabelsController < ApplicationController
-  before_filter :require_owned
+  before_filter :check_permission
 
   # GET /as_labels
   # GET /as_labels.xml

@@ -1,11 +1,20 @@
 class AsNotesController < ApplicationController
-  before_filter :require_login
+  before_filter :require_login, :except => [:public]
 
   # GET /as_notes
   # GET /as_notes.xml
   def index
     #@as_notes = AsNote.all
     @as_notes = current_user.as_notes
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.xml  { render :xml => @as_notes }
+    end
+  end
+
+  def public
+    @as_notes = AsNote.public_notes
 
     respond_to do |format|
       format.html # index.html.erb
@@ -44,15 +53,22 @@ class AsNotesController < ApplicationController
   # POST /as_notes.xml
   def create
     @as_note = AsNote.new(params[:as_note])
+    @ownership = Ownership.new
+    @ownership.as_note = @as_note
+    @ownership.user = current_user
 
-    respond_to do |format|
-      if @as_note.save
-        format.html { redirect_to(@as_note, :notice => 'As note was successfully created.') }
-        format.xml  { render :xml => @as_note, :status => :created, :location => @as_note }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @as_note.errors, :status => :unprocessable_entity }
+    if @ownership.save then
+      respond_to do |format|
+        if @as_note.save
+          format.html { redirect_to(@as_note, :notice => 'As note was successfully created.') }
+          format.xml  { render :xml => @as_note, :status => :created, :location => @as_note }
+        else
+          format.html { render :action => "new" }
+          format.xml  { render :xml => @as_note.errors, :status => :unprocessable_entity }
+        end
       end
+    else
+      redirect_to new_as_note_path, :notice=>"ownership save failed!"
     end
   end
 

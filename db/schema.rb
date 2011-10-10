@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110930052313) do
+ActiveRecord::Schema.define(:version => 20111010025447) do
 
   create_table "as_labels", :force => true do |t|
     t.string   "name"
@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(:version => 20110930052313) do
     t.text     "comment"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "public"
   end
 
   create_table "as_values", :force => true do |t|

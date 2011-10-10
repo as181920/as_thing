@@ -11,6 +11,10 @@
   <%= raw @as_note.comment %>
 </p>
 
+<p>
+  <b>Public:</b>
+  <%= raw @as_note.public %>
+</p>
 
 <%= link_to 'Back', as_notes_path %> |
 <%= link_to 'Edit', edit_as_note_path(@as_note) %> |

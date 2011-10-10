@@ -17,6 +17,14 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def check_permission
+    if AsNote.find(params["as_note_id"]).users.include? current_user then
+    elsif AsNote.find(params["as_note_id"]).public == true
+    else
+      redirect_to root_url, :notice=>"not permitted!"
+    end
+  end
+
   def require_owned
     if AsNote.find(params["as_note_id"]).users.include? current_user then
     else

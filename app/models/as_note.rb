@@ -6,6 +6,10 @@ class AsNote < ActiveRecord::Base
   validates_presence_of :name
   validates_length_of :name, :maximum => 50
 
+  def self.public_notes
+    AsNote.where("public=?",true)
+  end
+
   def get_sorted_labels(note)
     note.as_labels
   end
