@@ -1,18 +1,25 @@
 <!--<h1>Listing Records</h1>-->
 <!-- link_to 'Home', as_notes_path -->
-<b> <%= @as_note.name %>: </b> (
+<b> <%= link_to @as_note.name, as_note_as_values_path %>: </b> (
 <%= link_to 'Setting', @as_note %> |
 <%= link_to 'New', new_as_note_as_value_path(@as_note) %> )
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 Total:  <%= @records_count %> Records
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <%= paginate @l_values %>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+<% form_tag as_note_as_values_path, :method=>"get" do %>
+  <%= select_tag(:label,options_for_select(@labels_select,["No.","numero"])) %>
+  <%= text_field_tag(:search, @search,:size=>"15") %>
+  <%= submit_tag "Search" %>
+<% end %>
 
 <table>
   <tr>
-		<th><%= link_to "No.", {:sort=>"No.", :direction=>@direction}, {:class=>"current #{params[:sort] == 'No.' ? (params[:direction] == 'desc' ? 'asc' : 'desc') : nil}"} %></th>
+    <th><%= link_to "No.", {:sort=>"No.", :direction=>@direction, :search=>@search, :label=>@label_selected}, {:class=>"current #{@sort == 'No.' ? (params[:direction] == 'desc' ? 'asc' : 'desc') : nil}"} %></th>
     <% @labels.each do |as_label| %>
-		<th><%= link_to as_label.name, {:sort=>as_label.name, :direction=>@direction}, {:class=>"current #{as_label.name == params[:sort] ? (params[:direction] == 'desc' ? 'asc' : 'desc') : nil}"} %></th>
+    <th><%= link_to as_label.name, {:sort=>as_label.name, :direction=>@direction, :search=>@search, :label=>@label_selected}, {:class=>"current #{as_label.name == @sort ? (params[:direction] == 'desc' ? 'asc' : 'desc') : nil}"} %></th>
 
     <% end %>
     <th></th>

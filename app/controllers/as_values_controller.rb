@@ -12,16 +12,43 @@ class AsValuesController < ApplicationController
     unless @as_note.as_labels.first
       redirect_to(@as_note, :notice =>'Should add labels first.')
     else
-      #todo asc,desc
       @direction = params[:direction] == "desc" ? "asc" : "desc"
+      @label_selected = params[:label]
+      @search = params[:search]
+      @search_like = "%"+params[:search].to_s+"%"
+      @sort = params[:sort]
+      @labels_select = @labels.collect {|l| [l.name, l.id]}
+      @labels_select << ["No.","numero"]
       @records_count = @as_note.as_labels.first.as_values.count
-      case params[:sort]
+
+      case @sort
       when nil
-        @l_values = @as_note.as_labels.first.as_values.order("numero desc").page(params[:page]).per(15)
+        case @label_selected
+        when nil
+          @l_values = @as_note.as_labels.first.as_values.order("numero desc").page(params[:page]).per(15)
+        when "numero"
+          @l_values = @as_note.as_labels.first.as_values.where("numero like ?",@search_like).order("numero desc").page(params[:page]).per(15)
+        else
+          @l_values = @as_note.as_labels.find(@label_selected).as_values.where("value like ?",@search_like).order("numero desc").page(params[:page]).per(15)
+        end
       when "No."
-        @l_values = @as_note.as_labels.first.as_values.order("numero "+@direction).page(params[:page]).per(15)
+        case @label_selected
+        when nil
+          @l_values = @as_note.as_labels.first.as_values.order("numero "+@direction).page(params[:page]).per(15)
+        when "numero"
+          @l_values = @as_note.as_labels.first.as_values.where("numero like ?",@search_like).order("numero "+@direction).page(params[:page]).per(15)
+        else
+          @l_values = @as_note.as_labels.find(@label_selected).as_values.where("value like ?",@search_like).order("numero "+@direction).page(params[:page]).per(15)
+        end
       else
-        @l_values = @as_note.as_labels.find_by_name(params[:sort]).as_values.order("value "+@direction).page(params[:page]).per(15)
+        case @label_selected
+        when nil
+          @l_values = @as_note.as_labels.find_by_name(@sort).as_values.order("value "+@direction).page(params[:page]).per(15)
+        when "numero"
+          @l_values = @as_note.as_labels.find_by_name(@sort).as_values.where("numero like ?",@search_like).order("value "+@direction).page(params[:page]).per(15)
+        else
+          @l_values = @as_note.as_labels.find_by_name(@sort).as_values.where("value like ?",@search_like).order("value "+@direction).page(params[:page]).per(15)
+        end
       end
     end
   end
