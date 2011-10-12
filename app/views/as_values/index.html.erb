@@ -10,7 +10,7 @@ Total:  <%= @records_count %> Records
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
 <% form_tag as_note_as_values_path, :method=>"get" do %>
-  <%= select_tag(:label,options_for_select(@labels_select,["No.","numero"])) %>
+  <%= select_tag(:label,options_for_select(@labels_select,@label_selected_array)) %>
   <%= text_field_tag(:search, @search,:size=>"15") %>
 	<%= submit_tag "Search", :name=>nil %>
 <% end %>

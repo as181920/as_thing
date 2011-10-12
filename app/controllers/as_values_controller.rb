@@ -12,14 +12,22 @@ class AsValuesController < ApplicationController
     unless @as_note.as_labels.first
       redirect_to(@as_note, :notice =>'Should add labels first.')
     else
+      #@records_count = @as_note.as_labels.first.as_values.count
       @direction = params[:direction] == "desc" ? "asc" : "desc"
-      @label_selected = params[:label]
       @search = params[:search]
       @search_like = "%"+params[:search].to_s+"%"
       @sort = params[:sort]
       @labels_select = @labels.collect {|l| [l.name, l.id]}
       @labels_select << ["No.","numero"]
-      @records_count = @as_note.as_labels.first.as_values.count
+      @label_selected = params[:label]
+      case @label_selected
+      when nil
+        @label_selected_array= ["No.","numero"]
+      when "numero"
+        @label_selected_array= ["No.","numero"]
+      else
+        @label_selected_array= (@label_selected.nil?)? ["No.","numero"] : [AsLabel.find(@label_selected),@label_selected]
+      end
 
       case @sort
       when nil
@@ -50,6 +58,7 @@ class AsValuesController < ApplicationController
           @l_values = @as_note.as_labels.find_by_name(@sort).as_values.where("value like ?",@search_like).order("value "+@direction).page(params[:page]).per(15)
         end
       end
+      @records_count = @l_values.length
     end
   end
 
