@@ -14,6 +14,10 @@ class AsNote < ActiveRecord::Base
     note.as_labels
   end
 
+  def get_visible_labels(note)
+    note.as_labels.where(["invisible = ?",false])
+  end
+
   def destroy_all_releated_data(as_note)
     transaction do
       as_note.as_labels.each do |as_label|

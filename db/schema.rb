@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111010025447) do
+ActiveRecord::Schema.define(:version => 20111015125205) do
 
   create_table "as_labels", :force => true do |t|
     t.string   "name"
@@ -26,10 +26,10 @@ ActiveRecord::Schema.define(:version => 20111010025447) do
     t.boolean  "searchable"
     t.text     "default_value"
     t.boolean  "editable"
-    t.boolean  "visible"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "as_note_id"
+    t.boolean  "invisible",       :default => false
   end
 
   create_table "as_notes", :force => true do |t|

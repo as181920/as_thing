@@ -6,7 +6,7 @@ class AsValuesController < ApplicationController
   # GET /as_values.xml
   def index
     @as_note = AsNote.find(params[:as_note_id])
-    @labels = @as_note.get_sorted_labels(@as_note)
+    @labels = @as_note.get_visible_labels(@as_note)
     #TODO ..when label is nil, optimize the handle method, consider use self_defined validation method
     unless @as_note.as_labels.first
       redirect_to(@as_note, :notice =>'Should add labels first.')
