@@ -1,6 +1,63 @@
 class AsValue < ActiveRecord::Base
   belongs_to :as_label
 
+  def self.get_label_selected_array(label_selected)
+    case label_selected
+    when nil
+      @label_selected_array= ["No.","numero"]
+    when "numero"
+      @label_selected_array= ["No.","numero"]
+    else
+      @label_selected_array= (label_selected.nil?)? ["No.","numero"] : [AsLabel.find(label_selected),label_selected]
+    end
+  end
+
+  def self.get_lvalues_and_count(as_note,sort,direction,label_selected,search,page_number)
+    search_like = "%"+search.to_s+"%"
+    case sort
+    when nil
+      case label_selected
+      when nil
+        @l_values_page = as_note.as_labels.first.as_values.order("numero desc").page(page_number).per(15)
+        @records_count = as_note.as_labels.first.as_values.length
+      when "numero"
+        @l_values_page = as_note.as_labels.first.as_values.where("numero like ?",search_like).order("numero desc").page(page_number).per(15)
+        @records_count = as_note.as_labels.first.as_values.where("numero like ?",search_like).length
+      else
+        @l_values_page = as_note.as_labels.find(label_selected).as_values.where("value like ?",search_like).order("numero desc").page(page_number).per(15)
+        @records_count = as_note.as_labels.find(label_selected).as_values.where("value like ?",search_like).length
+      end
+    when "numero"
+      case label_selected
+      when nil
+        @l_values_page = as_note.as_labels.first.as_values.order("numero "+direction).page(page_number).per(15)
+        @records_count = as_note.as_labels.first.as_values.length
+      when "numero"
+        @l_values_page = as_note.as_labels.first.as_values.where("numero like ?",search_like).order("numero "+direction).page(page_number).per(15)
+        @records_count = as_note.as_labels.first.as_values.where("numero like ?",search_like).length
+      else
+        @l_values_page = as_note.as_labels.find(label_selected).as_values.where("value like ?",search_like).order("numero "+direction).page(page_number).per(15)
+        @records_count = as_note.as_labels.find(label_selected).as_values.where("value like ?",search_like).length
+      end
+    else
+      case label_selected
+      when nil
+        @l_values_page = as_note.as_labels.find(sort).as_values.order("value "+direction).page(page_number).per(15)
+        @records_count = as_note.as_labels.find(sort).as_values.length
+      when "numero"
+        @l_values_page = as_note.as_labels.find(sort).as_values.where("numero like ?",search_like).order("value "+direction).page(page_number).per(15)
+        @records_count = as_note.as_labels.find(sort).as_values.where("numero like ?",search_like).length
+      else
+        #TODO:performance to be improved when search and sort and paginate
+        @l_values = AsValue.find_by_sql(["select search.numero, search.value  from as_values sort,as_values search where search.numero=sort.numero and search.as_label_id=? and sort.as_label_id = ? and search.value like ? order by sort.value #{direction}",label_selected,sort,search_like])
+        @records_count = @l_values.length
+        @l_values_page = Kaminari.paginate_array(@l_values).page(page_number).per(15)
+      end
+    end
+
+    return @l_values_page, @records_count
+  end
+
   def self.save_entire_record(values)
     last_value = AsValue.first(:select=>:numero,:order=>"numero DESC")
     if last_value then

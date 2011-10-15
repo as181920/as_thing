@@ -7,58 +7,21 @@ class AsValuesController < ApplicationController
   def index
     @as_note = AsNote.find(params[:as_note_id])
     @labels = @as_note.get_sorted_labels(@as_note)
-    #@numeros = @as_note.as_labels.first.as_values.all(:select=>"numero",:order=>"numero DESC").collect{|n| n.numero}
-    #todo ..when label is nil, optimize the handle method, consider use self_defined validation method
+    #TODO ..when label is nil, optimize the handle method, consider use self_defined validation method
     unless @as_note.as_labels.first
       redirect_to(@as_note, :notice =>'Should add labels first.')
     else
-      #@records_count = @as_note.as_labels.first.as_values.count
-      @direction = params[:direction] == "desc" ? "asc" : "desc"
-      @search = params[:search]
-      @search_like = "%"+params[:search].to_s+"%"
       @sort = params[:sort]
+      @direction = params[:direction] == "desc" ? "asc" : "desc"
       @labels_select = @labels.collect {|l| [l.name, l.id]}
       @labels_select << ["No.","numero"]
       @label_selected = params[:label]
-      case @label_selected
-      when nil
-        @label_selected_array= ["No.","numero"]
-      when "numero"
-        @label_selected_array= ["No.","numero"]
-      else
-        @label_selected_array= (@label_selected.nil?)? ["No.","numero"] : [AsLabel.find(@label_selected),@label_selected]
-      end
+      @search = params[:search]
+      @page_number = params[:page]
 
-      case @sort
-      when nil
-        case @label_selected
-        when nil
-          @l_values = @as_note.as_labels.first.as_values.order("numero desc").page(params[:page]).per(15)
-        when "numero"
-          @l_values = @as_note.as_labels.first.as_values.where("numero like ?",@search_like).order("numero desc").page(params[:page]).per(15)
-        else
-          @l_values = @as_note.as_labels.find(@label_selected).as_values.where("value like ?",@search_like).order("numero desc").page(params[:page]).per(15)
-        end
-      when "No."
-        case @label_selected
-        when nil
-          @l_values = @as_note.as_labels.first.as_values.order("numero "+@direction).page(params[:page]).per(15)
-        when "numero"
-          @l_values = @as_note.as_labels.first.as_values.where("numero like ?",@search_like).order("numero "+@direction).page(params[:page]).per(15)
-        else
-          @l_values = @as_note.as_labels.find(@label_selected).as_values.where("value like ?",@search_like).order("numero "+@direction).page(params[:page]).per(15)
-        end
-      else
-        case @label_selected
-        when nil
-          @l_values = @as_note.as_labels.find_by_name(@sort).as_values.order("value "+@direction).page(params[:page]).per(15)
-        when "numero"
-          @l_values = @as_note.as_labels.find_by_name(@sort).as_values.where("numero like ?",@search_like).order("value "+@direction).page(params[:page]).per(15)
-        else
-          @l_values = @as_note.as_labels.find_by_name(@sort).as_values.where("value like ?",@search_like).order("value "+@direction).page(params[:page]).per(15)
-        end
-      end
-      @records_count = @l_values.length
+      @label_selected_array = AsValue.get_label_selected_array(@label_selected)
+
+      @l_values_page, @records_count = AsValue.get_lvalues_and_count(@as_note,@sort,@direction,@label_selected,@search,@page_number)
     end
   end
 
@@ -79,7 +42,7 @@ class AsValuesController < ApplicationController
   # GET /as_values/new.xml
   def new
     @as_note = AsNote.find(params[:as_note_id])
-    #todo: modify get_sorted_labels method
+    #TODO: modify get_sorted_labels method
     #@labels = @as_note.as_labels
     @labels = @as_note.get_sorted_labels(@as_note)
 
