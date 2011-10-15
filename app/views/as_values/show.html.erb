@@ -8,6 +8,14 @@
   <pre><%= raw AsValue.current_value(@numero,as_label.id) %></pre>
 </p>
 <% end %>
+<p>
+  <b>created_at:</b>
+  <pre><%= @labels.first.as_values.first["created_at"].strftime("%Y-%m-%d") %></pre>
+</p>
+<p>
+  <b>updated_at:</b>
+  <pre><%= @labels.first.as_values.last["updated_at"].strftime("%Y-%m-%d") %></pre>
+</p>
 
 <%= link_to 'Back to data list', as_note_as_values_path(@as_note) %> |
 <%= link_to 'Edit', edit_as_note_as_value_path(@as_note, @numero) %> |
