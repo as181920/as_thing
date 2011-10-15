@@ -21,6 +21,7 @@ class AsValuesController < ApplicationController
 
       @label_selected_array = AsValue.get_label_selected_array(@label_selected)
 
+      #TODO:performance to be improved 
       @l_values_page, @records_count = AsValue.get_lvalues_and_count(@as_note,@sort,@direction,@label_selected,@search,@page_number)
     end
   end

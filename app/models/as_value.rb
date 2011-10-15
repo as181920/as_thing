@@ -48,10 +48,8 @@ class AsValue < ActiveRecord::Base
         @l_values_page = as_note.as_labels.find(sort).as_values.where("numero like ?",search_like).order("value "+direction).page(page_number).per(15)
         @records_count = as_note.as_labels.find(sort).as_values.where("numero like ?",search_like).length
       else
-        #TODO:performance to be improved when search and sort and paginate
-        @l_values = AsValue.find_by_sql(["select search.numero, search.value  from as_values sort,as_values search where search.numero=sort.numero and search.as_label_id=? and sort.as_label_id = ? and search.value like ? order by sort.value #{direction}",label_selected,sort,search_like])
-        @records_count = @l_values.length
-        @l_values_page = Kaminari.paginate_array(@l_values).page(page_number).per(15)
+        @l_values_page = AsValue.joins("inner join as_values sort").where(["sort.numero=as_values.numero and as_values.as_label_id=? and sort.as_label_id=? and as_values.value like ?",label_selected,sort,search_like]).order("sort.value "+direction).page(page_number).per(15)
+        @records_count = AsValue.joins("inner join as_values sort").where(["sort.numero=as_values.numero and as_values.as_label_id=? and sort.as_label_id=? and as_values.value like ?",label_selected,sort,search_like]).length
       end
     end
 
