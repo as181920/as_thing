@@ -68,7 +68,8 @@ class AsLabelsController < ApplicationController
 
     respond_to do |format|
       if @as_label.update_attributes(params[:as_label])
-        format.html { redirect_to([@as_note,@as_label], :notice => 'As label was successfully updated.') }
+        #format.html { redirect_to([@as_note,@as_label], :notice => 'As label was successfully updated.') }
+        format.html { redirect_to(as_note_as_labels_url(@as_note), :notice => 'As label was successfully updated.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

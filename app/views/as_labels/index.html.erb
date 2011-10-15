@@ -5,39 +5,15 @@
     <th>Name</th>
     <th>Comment</th>
     <th>Label format</th>
-    <th>Possible values</th>
-    <th>Min length</th>
-    <th>Max length</th>
-    <th>Regexp</th>
-    <th>Is required</th>
-    <th>Is filter</th>
-    <th>Position</th>
-    <th>Searchable</th>
-    <th>Default value</th>
-    <th>Editable</th>
-    <th>Visible</th>
-    <th></th>
     <th></th>
     <th></th>
   </tr>
 
 <% @as_labels.each do |as_label| %>
   <tr>
-    <td><%= as_label.name %></td>
+    <td><%= link_to as_label.name, as_note_as_label_path(@as_note,as_label) %></td>
     <td><%= as_label.comment %></td>
     <td><%= as_label.label_format %></td>
-    <td><%= as_label.possible_values %></td>
-    <td><%= as_label.min_length %></td>
-    <td><%= as_label.max_length %></td>
-    <td><%= as_label.regexp %></td>
-    <td><%= as_label.is_required %></td>
-    <td><%= as_label.is_filter %></td>
-    <td><%= as_label.position %></td>
-    <td><%= as_label.searchable %></td>
-    <td><%= as_label.default_value %></td>
-    <td><%= as_label.editable %></td>
-    <td><%= as_label.visible %></td>
-    <td><%= link_to 'Show', [@as_note,as_label] %></td>
     <td><%= link_to 'Edit', edit_as_note_as_label_path(@as_note,as_label) %></td>
     <td><%= link_to 'Destroy', [@as_note,as_label], :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
@@ -46,5 +22,6 @@
 
 <br />
 
-<%= link_to 'Back', @as_note %> |
-<%= link_to 'New', new_as_note_as_label_path(@as_note) %>
+<%= link_to 'Notes Detail', @as_note %> |
+<%= link_to 'Notes Data', as_note_as_values_path(@as_note) %> |
+<%= link_to 'New Label', new_as_note_as_label_path(@as_note) %>
