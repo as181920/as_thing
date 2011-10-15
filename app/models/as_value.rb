@@ -19,37 +19,37 @@ class AsValue < ActiveRecord::Base
       case label_selected
       when nil
         @l_values_page = as_note.as_labels.first.as_values.order("numero desc").page(page_number).per(15)
-        @records_count = as_note.as_labels.first.as_values.length
+        @records_count = as_note.as_labels.first.as_values.count
       when "numero"
         @l_values_page = as_note.as_labels.first.as_values.where("numero like ?",search_like).order("numero desc").page(page_number).per(15)
-        @records_count = as_note.as_labels.first.as_values.where("numero like ?",search_like).length
+        @records_count = as_note.as_labels.first.as_values.where("numero like ?",search_like).count
       else
         @l_values_page = as_note.as_labels.find(label_selected).as_values.where("value like ?",search_like).order("numero desc").page(page_number).per(15)
-        @records_count = as_note.as_labels.find(label_selected).as_values.where("value like ?",search_like).length
+        @records_count = as_note.as_labels.find(label_selected).as_values.where("value like ?",search_like).count
       end
     when "numero"
       case label_selected
       when nil
         @l_values_page = as_note.as_labels.first.as_values.order("numero "+direction).page(page_number).per(15)
-        @records_count = as_note.as_labels.first.as_values.length
+        @records_count = as_note.as_labels.first.as_values.count
       when "numero"
         @l_values_page = as_note.as_labels.first.as_values.where("numero like ?",search_like).order("numero "+direction).page(page_number).per(15)
-        @records_count = as_note.as_labels.first.as_values.where("numero like ?",search_like).length
+        @records_count = as_note.as_labels.first.as_values.where("numero like ?",search_like).count
       else
         @l_values_page = as_note.as_labels.find(label_selected).as_values.where("value like ?",search_like).order("numero "+direction).page(page_number).per(15)
-        @records_count = as_note.as_labels.find(label_selected).as_values.where("value like ?",search_like).length
+        @records_count = as_note.as_labels.find(label_selected).as_values.where("value like ?",search_like).count
       end
     else
       case label_selected
       when nil
         @l_values_page = as_note.as_labels.find(sort).as_values.order("value "+direction).page(page_number).per(15)
-        @records_count = as_note.as_labels.find(sort).as_values.length
+        @records_count = as_note.as_labels.find(sort).as_values.count
       when "numero"
         @l_values_page = as_note.as_labels.find(sort).as_values.where("numero like ?",search_like).order("value "+direction).page(page_number).per(15)
-        @records_count = as_note.as_labels.find(sort).as_values.where("numero like ?",search_like).length
+        @records_count = as_note.as_labels.find(sort).as_values.where("numero like ?",search_like).count
       else
         @l_values_page = AsValue.joins("inner join as_values sort").where(["sort.numero=as_values.numero and as_values.as_label_id=? and sort.as_label_id=? and as_values.value like ?",label_selected,sort,search_like]).order("sort.value "+direction).page(page_number).per(15)
-        @records_count = AsValue.joins("inner join as_values sort").where(["sort.numero=as_values.numero and as_values.as_label_id=? and sort.as_label_id=? and as_values.value like ?",label_selected,sort,search_like]).length
+        @records_count = AsValue.joins("inner join as_values sort").where(["sort.numero=as_values.numero and as_values.as_label_id=? and sort.as_label_id=? and as_values.value like ?",label_selected,sort,search_like]).count
       end
     end
 
