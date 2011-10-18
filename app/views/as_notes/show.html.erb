@@ -15,6 +15,6 @@
 </p>
 
 <%= link_to 'Edit', edit_as_note_path(@as_note) %> |
-<%= link_to 'Destroy', @as_note, :confirm => 'Are you sure?', :method => :delete %> |
+<%= link_to 'Destroy', @as_note, :confirm => 'Are you sure to delete this notes and all releated label/data?', :method => :delete %> |
 <%= link_to "set labels", as_note_as_labels_path(@as_note) %> |
 <%= link_to "view data", as_note_as_values_path(@as_note) %>

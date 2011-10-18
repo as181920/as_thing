@@ -15,7 +15,7 @@
     <td><%= as_label.comment %></td>
     <td><%= as_label.label_format %></td>
     <td><%= link_to 'Edit', edit_as_note_as_label_path(@as_note,as_label) %></td>
-    <td><%= link_to 'Destroy', [@as_note,as_label], :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'Destroy', [@as_note,as_label], :confirm => 'Are you sure to delete this notes and all releated data?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>
