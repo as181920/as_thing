@@ -13,6 +13,7 @@ class AsValuesController < ApplicationController
     else
       @sort = params[:sort]
       @direction = params[:direction] == "desc" ? "asc" : "desc"
+      @direction_static = params[:direction]
       @labels_select = @labels.collect {|l| [l.name, l.id]}
       @labels_select << ["No.","numero"]
       @label_selected = params[:label]
@@ -103,10 +104,16 @@ end
   def destroy
     @as_note = AsNote.find(params[:as_note_id])
     @numero = params[:id]
+    @sort = params[:sort]
+    @direction = params[:direction]
+    @search = params[:search]
+    @label = params[:label]
+    @page = params[:page]
     AsValue.delete_entire_record(@numero)
 
     respond_to do |format|
-      format.html { redirect_to as_note_as_values_url(@as_note) }
+      #format.html { redirect_to as_note_as_values_url(@as_note) }
+      format.html { redirect_to(:action=>:index, :sort=>@sort,:direction=>@direction,:search=>@search,:label=>@label,:page=>@page) }
       #format.xml  { head :ok }
     end
   end

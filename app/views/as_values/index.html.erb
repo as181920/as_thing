@@ -40,7 +40,7 @@ Total:  <%= @records_count %> Records
 			<% end %>
     <% end %>
     <td><%= link_to 'Edit', edit_as_note_as_value_path(@as_note, v.numero) %></td>
-    <td><%= link_to 'Destroy', as_note_as_value_path(@as_note,v.numero), :confirm=>'Are you sure?', :method=>:delete %></td>
+		<td><%= link_to 'Destroy', as_note_as_value_path(@as_note,v.numero,:sort=>@sort,:direction=>@direction_static,:search=>@search,:label=>@label_selected,:page=>@page_number), :confirm=>'Are you sure to delete this record?', :method=>:delete %></td>
   </tr>
   <% end %>
 </table>
