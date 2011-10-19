@@ -18,6 +18,8 @@
 		<% if as_note.as_labels.first then %>
 			<% if as_note.as_labels.first.as_values.last then %>
 				<td><%= as_note.as_labels.first.as_values.last["updated_at"].strftime("%Y-%m-%d") %></td>
+			<% else %>
+			<td></td>
 			<% end %>
     <% else %>
     <td></td>
