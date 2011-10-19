@@ -16,7 +16,7 @@
     <td><pre><%= raw as_note.comment %></pre></td>
     <td><%= as_note.created_at.strftime("%Y-%m-%d") %></td>
 		<% if as_note.as_labels.first then %>
-			<% if as_note.as_labels.first.as_values then %>
+			<% if as_note.as_labels.first.as_values.last then %>
 				<td><%= as_note.as_labels.first.as_values.last["updated_at"].strftime("%Y-%m-%d") %></td>
 			<% end %>
     <% else %>
