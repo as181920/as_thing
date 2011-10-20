@@ -45,3 +45,5 @@ Total:  <%= @records_count %> Records
   <% end %>
 </table>
 <%= paginate @l_values_page %>
+
+<%= link_to "Export CSV", :format=>:csv,:sort=>@sort,:direction=>@direction_static,:search=>@search,:label=>@label_selected %>
