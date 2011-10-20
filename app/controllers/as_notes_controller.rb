@@ -5,7 +5,14 @@ class AsNotesController < ApplicationController
   # GET /as_notes.xml
   def index
     #@as_notes = AsNote.all
-    @as_notes = current_user.as_notes
+    @page_number = params[:page] || 1
+    @labels_select = ["id","name","comment"]
+    @label_selected = params[:label] || "id"
+    @search = params[:search]
+    @search_like = "%"+@search.to_s+"%"
+
+    @as_notes = current_user.as_notes.where("as_notes.? like ?",@label_selected,@search_like).page(@page_number).per(3)
+    @total = current_user.as_notes.where("as_notes.? like ?",@label_selected,@search_like).count
 
     respond_to do |format|
       format.html # index.html.erb
@@ -14,7 +21,14 @@ class AsNotesController < ApplicationController
   end
 
   def public
-    @as_notes = AsNote.public_notes
+    #@as_notes = AsNote.public_notes
+    @page_number = params[:page] || 1
+    @labels_select = ["id","name","comment"]
+    @label_selected = params[:label] || "id"
+    @search = params[:search]
+    @search_like = "%"+@search.to_s+"%"
+    @as_notes = AsNote.where("public=? and as_notes.? like ?",true,@label_selected,@search_like).page(@page_number).per(3)
+    @total = AsNote.where("public=? and as_notes.? like ?",true,@label_selected,@search_like).count
 
     respond_to do |format|
       format.html # index.html.erb

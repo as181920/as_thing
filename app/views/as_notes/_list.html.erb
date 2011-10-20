@@ -1,0 +1,19 @@
+<table>
+  <tr>
+    <th>Id</th>
+    <th>Name</th>
+    <th>Comment</th>
+    <th>created_at</th>
+    <th>updated_at</th>
+  </tr>
+
+<% @as_notes.each do |as_note| %>
+  <tr>
+    <td><%= link_to as_note.id, as_note_as_values_path(as_note) %></td>
+    <td><%= link_to as_note.name, as_note_as_values_path(as_note) %></td>
+    <td><pre><%= raw as_note.comment %></pre></td>
+    <td><%= as_note.get_created_date(as_note) %></td>
+    <td><%= as_note.get_updated_date(as_note) %></td>
+  </tr>
+<% end %>
+</table>

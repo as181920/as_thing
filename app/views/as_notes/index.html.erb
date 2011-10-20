@@ -1,26 +1,15 @@
-<!--
-<h1>All Notes</h1>
--->
+Total:  <%= @total %> Notes
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<%= paginate @as_notes %>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Comment</th>
-    <th>created_at</th>
-    <th>updated_at</th>
-  </tr>
-
-<% @as_notes.each do |as_note| %>
-  <tr>
-    <td><%= link_to as_note.name, as_note_as_values_path(as_note) %></td>
-    <td><pre><%= raw as_note.comment %></pre></td>
-    <td><%= as_note.get_created_date(as_note) %></td>
-    <td><%= as_note.get_updated_date(as_note) %></td>
-  </tr>
+<%= form_tag as_notes_path, :method=>"get" do %>
+  <%= select_tag(:label,options_for_select(@labels_select,@label_selected)) %>
+  <%= text_field_tag(:search, @search,:size=>"15") %>
+	<%= submit_tag "Search", :name=>nil %>
 <% end %>
-</table>
 
-<br />
+<%= render "list" %>
 
 <%= link_to 'New As note', new_as_note_path %> | 
 <%= link_to 'View public notes', "public" %>
