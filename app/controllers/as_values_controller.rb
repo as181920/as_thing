@@ -10,6 +10,7 @@ class AsValuesController < ApplicationController
     #TODO ..when label is nil, optimize the handle method, consider use self_defined validation method
     unless @as_note.as_labels.first
       redirect_to(@as_note, :notice =>'Should add labels first.')
+      return
     else
       @sort = params[:sort]
       @direction = params[:direction] == "desc" ? "asc" : "desc"
