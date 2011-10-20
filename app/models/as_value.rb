@@ -106,4 +106,21 @@ class AsValue < ActiveRecord::Base
       AsValue.delete_all(["numero=?",numero])
     end
   end
+
+  def self.get_record_created_date(labels,numero)
+    created_at = labels.first.as_values.find_by_numero(numero).created_at
+    labels.each do |lb|
+      created_at = (created_at <= lb.as_values.find_by_numero(numero).created_at)? created_at : lb.as_values.find_by_numero(numero).created_at
+    end
+    created_date = created_at.strftime("%Y-%m-%d")
+  end
+
+  def self.get_record_updated_date(labels,numero)
+    updated_at = labels.first.as_values.find_by_numero(numero).updated_at
+    labels.each do |lb|
+      updated_at = (updated_at >= lb.as_values.find_by_numero(numero).updated_at)? updated_at : lb.as_values.find_by_numero(numero).updated_at
+    end
+    updated_date = updated_at.strftime("%Y-%m-%d")
+  end
+
 end

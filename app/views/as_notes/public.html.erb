@@ -14,12 +14,8 @@
   <tr>
     <td><%= link_to as_note.name, as_note_as_values_path(as_note) %></td>
     <td><pre><%= raw as_note.comment %></pre></td>
-    <td><%= as_note.created_at.strftime("%Y-%m-%d") %></td>
-    <% if as_note.as_labels.first then %>
-      <td><%= as_note.as_labels.first.as_values.last["updated_at"].strftime("%Y-%m-%d") %></td>
-    <% else %>
-    <td></td>
-    <% end %>
+    <td><%= as_note.get_created_date(as_note) %></td>
+    <td><%= as_note.get_updated_date(as_note) %></td>
   </tr>
 <% end %>
 </table>
