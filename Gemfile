@@ -4,6 +4,8 @@ gem 'rails', '3.0.0'
 gem "jquery-rails"
 gem "kaminari"
 gem "bcrypt-ruby", :require => "bcrypt"
+gem "fastercsv"
+gem "nokogiri"
 
 
 # Bundle edge Rails instead:

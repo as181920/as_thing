@@ -12,6 +12,42 @@ class AsValue < ActiveRecord::Base
     end
   end
 
+  def self.get_lvalues_all(as_note,sort,direction,label_selected,search)
+    search_like = "%"+search.to_s+"%"
+    case sort
+    when nil
+      case label_selected
+      when nil
+        @l_values_all = as_note.as_labels.first.as_values.order("numero desc")
+      when "numero"
+        @l_values_all = as_note.as_labels.first.as_values.where("numero like ?",search_like).order("numero desc")
+      else
+        @l_values_all = as_note.as_labels.find(label_selected).as_values.where("value like ?",search_like).order("numero desc")
+      end
+    when "numero"
+      case label_selected
+      when nil
+        @l_values_all = as_note.as_labels.first.as_values.order("numero "+direction)
+      when "numero"
+        @l_values_all = as_note.as_labels.first.as_values.where("numero like ?",search_like).order("numero "+direction)
+      else
+        @l_values_all = as_note.as_labels.find(label_selected).as_values.where("value like ?",search_like).order("numero "+direction)
+      end
+    else
+      case label_selected
+      when nil
+        @l_values_all = as_note.as_labels.find(sort).as_values.order("value "+direction)
+      when "numero"
+        @l_values_all = as_note.as_labels.find(sort).as_values.where("numero like ?",search_like).order("value "+direction)
+      else
+        @l_values_all = AsValue.joins("inner join as_values sort").where(["sort.numero=as_values.numero and as_values.as_label_id=? and sort.as_label_id=? and as_values.value like ?",label_selected,sort,search_like]).order("sort.value "+direction)
+      end
+    end
+
+    return @l_values_all
+ 
+  end
+
   def self.get_lvalues_and_count(as_note,sort,direction,label_selected,search,page_number)
     search_like = "%"+search.to_s+"%"
     case sort

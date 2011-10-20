@@ -25,6 +25,30 @@ class AsValuesController < ApplicationController
       #TODO:performance to be improved 
       @l_values_page, @records_count = AsValue.get_lvalues_and_count(@as_note,@sort,@direction,@label_selected,@search,@page_number)
     end
+
+    respond_to do |format|
+      format.html # show.html.erb
+      format.csv do
+        csv_data = FasterCSV.generate do |csv|
+          th = ["No."] + @as_note.as_labels.collect {|lb| lb.name }
+          csv << th
+
+          lvalues_all = AsValue.get_lvalues_all(@as_note,@sort,@direction,@label_selected,@search)
+          lvalues_all.each do |lv|
+            tr = [lv.numero]
+            @as_note.as_labels.each do |lb|
+              cv = AsValue.current_value(lv.numero,lb.id)
+              if lb.label_format = "Text" then
+                cv = Nokogiri::HTML.parse(cv).content
+              end
+              tr += [cv]
+            end
+            csv << tr
+          end
+        end
+        render :text=>csv_data
+      end
+    end
   end
 
   # GET /as_values/1

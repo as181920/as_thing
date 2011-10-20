@@ -18,7 +18,9 @@ class AsNote < ActiveRecord::Base
     if note.as_labels.first and note.as_labels.first.as_values.order("updated_at DESC").first then
       updated_at = note.as_labels.first.as_values.order("updated_at DESC").first.updated_at
       note.as_labels.each do |lb|
-        updated_at = (updated_at > lb.as_values.order("updated_at DESC").first.updated_at)? updated_at : lb.as_values.order("updated_at DESC").first.updated_at
+        if lb.as_values.order("updated_at DESC").first then
+          updated_at = (updated_at > lb.as_values.order("updated_at DESC").first.updated_at)? updated_at : lb.as_values.order("updated_at DESC").first.updated_at
+        end
       end
       updated_date = updated_at.strftime("%Y-%m-%d")
     else
