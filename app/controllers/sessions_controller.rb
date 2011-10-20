@@ -1,5 +1,8 @@
 class SessionsController < ApplicationController
   def new
+    if current_user then
+      redirect_to as_notes_path
+    end
   end
 
   def create
