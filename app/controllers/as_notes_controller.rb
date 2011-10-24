@@ -107,6 +107,7 @@ class AsNotesController < ApplicationController
   def destroy
     @as_note = AsNote.find(params[:id])
     #@as_note.destroy_all_releated_data(@as_note)
+    @as_note.ownerships.each {|os| os.destroy}
     @as_note.destroy
 
     respond_to do |format|
