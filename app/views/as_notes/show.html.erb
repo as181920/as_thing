@@ -14,6 +14,16 @@
   <%= raw @as_note.public %>
 </p>
 
+<p>
+  <b>Created_at:</b>
+  <%= @as_note.get_created_date(@as_note) %>
+</p>
+
+<p>
+  <b>Updated_at:</b>
+  <%= @as_note.get_updated_date(@as_note) %>
+</p>
+
 <%= link_to 'Edit', edit_as_note_path(@as_note) %> |
 <%= link_to 'Destroy', @as_note, :confirm => 'Are you sure to delete this notes and all releated label/data?', :method => :delete %> |
 <%= link_to "set labels", as_note_as_labels_path(@as_note) %> |

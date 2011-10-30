@@ -1,4 +1,5 @@
 class AsNote < ActiveRecord::Base
+  acts_as_list
   has_many :as_labels, :dependent => :destroy
   has_many :ownerships
   has_many :users, :through => :ownerships

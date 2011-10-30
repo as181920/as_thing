@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111015125205) do
+ActiveRecord::Schema.define(:version => 20111029061701) do
 
   create_table "as_labels", :force => true do |t|
     t.string   "name"
@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(:version => 20111015125205) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "public"
+    t.integer  "position"
   end
 
   create_table "as_values", :force => true do |t|

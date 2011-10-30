@@ -1,10 +1,9 @@
+<!--
 <table>
   <tr>
     <th>Id</th>
     <th>Name</th>
     <th>Comment</th>
-    <th>created_at</th>
-    <th>updated_at</th>
   </tr>
 
 <% @as_notes.each do |as_note| %>
@@ -12,8 +11,33 @@
     <td><%= link_to as_note.id, as_note_as_values_path(as_note) %></td>
     <td><%= link_to as_note.name, as_note_as_values_path(as_note) %></td>
     <td><pre><%= raw as_note.comment %></pre></td>
-    <td><%= as_note.get_created_date(as_note) %></td>
-    <td><%= as_note.get_updated_date(as_note) %></td>
   </tr>
 <% end %>
 </table>
+-->
+
+<ul id="as_notes">
+<% @as_notes.each do |as_note| %>
+  <%= content_tag_for :li, as_note do %>
+  <%= link_to as_note.name, as_note_as_values_path(as_note),:title=>Nokogiri::HTML.parse(as_note.comment).content %> <br />
+  <% end %>
+<% end %>
+</ul>
+
+<script language="JavaScript">
+	$( "#as_notes" ).sortable({
+		stop: function(event, ui) { 
+			/*
+			$.ajax({
+				url: "/as_notes",
+				type: "get",
+				data: $('#as_notes').sortable('serialize'),
+				dataType: 'script',
+				complete: function(request){
+					  $('#as_notes').effect('highlight');
+					}
+				})
+				*/
+		}
+	});
+</script>
