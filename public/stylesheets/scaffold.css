@@ -14,9 +14,9 @@ ul {
 
 pre {
   /* background-color: #eee; */
-  background-color: #E5F1F4
-  padding: 10px;
-  font-size: 11px;
+  /*background-color: #E5F1F4*/
+  /*padding: 10px;*/
+  /*font-size: 11px;*/
 }
 
 a { color: #000; }
@@ -73,60 +73,30 @@ th, td {
   text-align:left;
 }
 th {
-  -moz-background-clip:border;
-  -moz-background-inline-policy:continuous;
-  -moz-background-origin:padding;
   /*color:#FFFFFF;*/
   padding-right: 12px;
 }
 td {
-  -moz-background-clip:border;
-  -moz-background-inline-policy:continuous;
-  -moz-background-origin:padding;
 }
 tr.even td {
-  -moz-background-clip:border;
-  -moz-background-inline-policy:continuous;
-  -moz-background-origin:padding;
 }
 tr.odd td {
-  -moz-background-clip:border;
-  -moz-background-inline-policy:continuous;
-  -moz-background-origin:padding;
 }
 th.over, tr.even th.over, tr.odd th.over {
-  -moz-background-clip:border;
-  -moz-background-inline-policy:continuous;
-  -moz-background-origin:padding;
 }
 th.down, tr.even th.down, tr.odd th.down {
-  -moz-background-clip:border;
-  -moz-background-inline-policy:continuous;
-  -moz-background-origin:padding;
 }
 th.selected, tr.even th.selected, tr.odd th.selected {
 }
 td.over, tr.even td.over, tr.odd td.over {
-  -moz-background-clip:border;
-  -moz-background-inline-policy:continuous;
-  -moz-background-origin:padding;
 }
 td.down, tr.even td.down, tr.odd td.down {
-  -moz-background-clip:border;
-  -moz-background-inline-policy:continuous;
-  -moz-background-origin:padding;
   color:#FFFFFF;
 }
 td.selected, tr.even td.selected, tr.odd td.selected {
-  -moz-background-clip:border;
-  -moz-background-inline-policy:continuous;
-  -moz-background-origin:padding;
   color:#555555;
 }
 td.empty, tr.odd td.empty, tr.even td.empty {
-  -moz-background-clip:border;
-  -moz-background-inline-policy:continuous;
-  -moz-background-origin:padding;
 }
 
 th .current {
