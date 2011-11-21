@@ -3,7 +3,7 @@ class AsNote < ActiveRecord::Base
   has_many :as_labels, :dependent => :destroy
   has_many :as_values, :through => :as_labels
   has_many :ownerships
-  has_many :users, :through => :ownerships
+  has_many :owners, :through => :ownerships, :source => :user
 
   validates_presence_of :name
   validates_length_of :name, :maximum => 50

@@ -11,7 +11,7 @@ class AsNotesController < ApplicationController
     @search = params[:search]
     @search_like = "%"+@search.to_s+"%"
 
-    @as_notes = current_user.as_notes.where("as_notes.? like ?",@label_selected,@search_like).page(@page_number).per(15)
+    @as_notes = current_user.as_notes.where("as_notes.? like ?",@label_selected,@search_like).order("ownerships.position").page(@page_number).per(15)
     @total = current_user.as_notes.where("as_notes.? like ?",@label_selected,@search_like).count
 
     respond_to do |format|
@@ -40,6 +40,7 @@ class AsNotesController < ApplicationController
   # GET /as_notes/1.xml
   def show
     @as_note = AsNote.find(params[:id])
+    @position = @as_note.ownerships.where("user_id = ?",current_user).first.position
 
     respond_to do |format|
       format.html # show.html.erb
@@ -70,6 +71,7 @@ class AsNotesController < ApplicationController
     @ownership = Ownership.new
     @ownership.as_note = @as_note
     @ownership.user = current_user
+    @ownership.position = current_user.ownerships.order("position desc").first.position.to_i + 1
 
     if @ownership.save then
       respond_to do |format|
@@ -107,7 +109,13 @@ class AsNotesController < ApplicationController
   def destroy
     @as_note = AsNote.find(params[:id])
     #@as_note.destroy_all_releated_data(@as_note)
+    @position = @as_note.ownerships.where("user_id = ?",current_user).first.position.to_i
     @as_note.ownerships.each {|os| os.destroy}
+    #current_user.ownerships.where("position > ?",@position).each do |o|
+    #  o.position -= 1
+    #  o.save
+    #end
+    current_user.ownerships.update_all("position = position - 1", "position > #{@position}")
     @as_note.destroy
 
     respond_to do |format|
