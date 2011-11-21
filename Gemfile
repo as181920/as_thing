@@ -6,7 +6,8 @@ gem "kaminari"
 gem "bcrypt-ruby", :require => "bcrypt"
 gem "fastercsv"
 gem "nokogiri"
-gem "acts_as_list"
+#gem "acts_as_list"
+#gem "coffee-script"
 
 
 # Bundle edge Rails instead:

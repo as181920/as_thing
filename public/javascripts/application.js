@@ -1,2 +1,11 @@
-// Place your application-specific JavaScript functions and classes here
-// This file is automatically included by javascript_include_tag :defaults
+
+$(document).ready(function() {
+  var _this = this;
+  return $("#as_notes").sortable().bind('sortstop', function(event, ui) {
+    return $.ajax({
+      url: "/as_notes",
+      type: "get",
+      success: $("body").append(ui.numericalPosition)
+    });
+  });
+});
