@@ -108,15 +108,17 @@ class AsNotesController < ApplicationController
   # DELETE /as_notes/1.xml
   def destroy
     @as_note = AsNote.find(params[:id])
-    #@as_note.destroy_all_releated_data(@as_note)
-    @position = @as_note.ownerships.where("user_id = ?",current_user).first.position.to_i
-    @as_note.ownerships.each {|os| os.destroy}
-    #current_user.ownerships.where("position > ?",@position).each do |o|
-    #  o.position -= 1
-    #  o.save
-    #end
-    current_user.ownerships.update_all("position = position - 1", "position > #{@position}")
-    @as_note.destroy
+
+    ActiveRecord::Base.transaction do
+      @as_note.owners.each do |user|
+        u_ownership = @as_note.ownerships.where("user_id = ?",user.id).first
+        u_position = u_ownership.position.to_i
+        u_ownership.destroy
+        user.ownerships.update_all("position = position - 1", "position > #{u_position}")
+      end
+      #@as_note.ownerships.each {|os| os.destroy}
+      @as_note.destroy
+    end
 
     respond_to do |format|
       format.html { redirect_to(as_notes_url) }
