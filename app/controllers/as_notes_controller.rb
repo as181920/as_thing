@@ -20,6 +20,20 @@ class AsNotesController < ApplicationController
     end
   end
 
+  def sort
+    position_array = []
+    params[:as_note].each do |n_id|
+      position_array << AsNote.find(n_id.to_i).ownerships.where("user_id = ?",current_user).first.position
+    end
+    position_sorted = position_array.sort
+
+    position_sorted.each_with_index do |p, i|
+      ownership=Ownership.where("as_note_id = ? and user_id = ?",params[:as_note][i],current_user).first
+      ownership.position = position_sorted[i]
+      ownership.save
+    end
+  end
+
   def public
     #@as_notes = AsNote.public_notes
     @page_number = params[:page] || 1

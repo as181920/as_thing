@@ -7,6 +7,8 @@ AsThing::Application.routes.draw do
   #post 'as_notes/:as_note_id/as_values/:numero' => 'as_values#update'
 
   resources :as_notes do
+    post :sort, on: :collection
+    #post :sort, :on=>:collection
     resources :as_labels
     resources :as_values
   end

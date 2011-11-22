@@ -19,7 +19,7 @@
 <ul id="as_notes">
 <% @as_notes.each do |as_note| %>
   <%= content_tag_for :li, as_note do %>
-  <%= link_to as_note.name, as_note_as_values_path(as_note),:title=>Nokogiri::HTML.parse(as_note.comment).content %> <br />
+    <%= link_to as_note.name, as_note_as_values_path(as_note),:title=>Nokogiri::HTML.parse(as_note.comment).content %><br />
   <% end %>
 <% end %>
 </ul>
