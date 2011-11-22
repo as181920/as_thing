@@ -1,8 +1,8 @@
 <!--<h1>Listing Records</h1>-->
 <!-- link_to 'Home', as_notes_path -->
 <b> <%= link_to @as_note.name, as_note_as_values_path %>: </b> (
-<%= link_to 'detail', @as_note %> |
-<%= link_to 'add data', new_as_note_as_value_path(@as_note) %> )
+<%= link_to 'Setting', setting_as_note_path(@as_note) %> |
+<%= link_to 'Add', new_as_note_as_value_path(@as_note) %> )
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 Total:  <%= @records_count %> Records
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

@@ -2,5 +2,6 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Back', as_note_as_labels_path(@as_note) %>
-<%= link_to 'Show', [@as_note,@as_label] %> |
+<%= link_to 'Cancel', as_note_as_labels_path(@as_note) %> |
+<%= link_to 'Destroy', [@as_note,@as_label], :confirm => 'Are you sure to delete this column and all releated data?', :method => :delete %> |
+<%= link_to 'Show', [@as_note,@as_label] %>

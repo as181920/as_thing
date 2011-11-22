@@ -8,8 +8,10 @@ AsThing::Application.routes.draw do
 
   resources :as_notes do
     post :sort, on: :collection
-    #post :sort, :on=>:collection
-    resources :as_labels
+    get :setting, on: :member
+    resources :as_labels do
+      post :sort, on: :collection
+    end
     resources :as_values
   end
 

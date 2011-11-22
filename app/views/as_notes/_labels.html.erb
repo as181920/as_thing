@@ -1,0 +1,13 @@
+<b><%= link_to @as_note.name, as_note_as_values_path(@as_note) %>: Columns</b>
+
+<ul id="as_labels">
+<% @as_labels.each do |as_label| %>
+  <%= content_tag_for :li, as_label do %>
+    <%= link_to as_label.name, edit_as_note_as_label_path(@as_note,as_label) %><span style="font-size:12px">( <%= as_label.label_format %> )</span><br />
+  <% end %>
+<% end %>
+</ul>
+
+<br />
+
+<%= link_to 'Add_Column', new_as_note_as_label_path(@as_note) %> |

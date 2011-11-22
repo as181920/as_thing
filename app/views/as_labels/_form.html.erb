@@ -48,12 +48,8 @@
     <%= f.check_box :is_filter %>
   </div>
   <div class="field">
-    <%= f.label :position %><br />
-    <%= f.text_field :position %>
-  </div>
-  <div class="field">
-    <%= f.label :searchable %><br />
-    <%= f.check_box :searchable %>
+    <%= f.label :unsearchable %><br />
+    <%= f.check_box :unsearchable %>
   </div>
   <div class="field">
     <%= f.label :default_value %><br />
@@ -72,6 +68,6 @@
     <%= f.check_box :invisible %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit("Submit") %>
   </div>
 <% end %>

@@ -23,12 +23,13 @@ class AsNotesController < ApplicationController
   def sort
     position_array = []
     params[:as_note].each do |n_id|
-      position_array << AsNote.find(n_id.to_i).ownerships.where("user_id = ?",current_user).first.position
+      #position_array << AsNote.find(n_id.to_i).ownerships.where("user_id = ?",current_user).first.position
+      position_array << Ownership.where("as_note_id = ? and user_id = ?",n_id.to_i,current_user).first.position
     end
     position_sorted = position_array.sort
 
     position_sorted.each_with_index do |p, i|
-      ownership=Ownership.where("as_note_id = ? and user_id = ?",params[:as_note][i],current_user).first
+      ownership=Ownership.where("as_note_id = ? and user_id = ?",params[:as_note][i].to_i,current_user).first
       ownership.position = position_sorted[i]
       ownership.save
     end
@@ -54,6 +55,18 @@ class AsNotesController < ApplicationController
   # GET /as_notes/1.xml
   def show
     @as_note = AsNote.find(params[:id])
+    @position = @as_note.ownerships.where("user_id = ?",current_user).first.position
+
+    respond_to do |format|
+      format.html # show.html.erb
+      format.xml  { render :xml => @as_note }
+    end
+  end
+
+  # GET /as_notes/1/setting
+  def setting
+    @as_note = AsNote.find(params[:id])
+    @as_labels = @as_note.as_labels
     @position = @as_note.ownerships.where("user_id = ?",current_user).first.position
 
     respond_to do |format|

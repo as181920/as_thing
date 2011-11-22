@@ -1,0 +1,13 @@
+<b><%= link_to @as_note.name, as_note_as_values_path(@as_note) %>: Setting</b>
+
+<%= render 'form' %>
+
+<p>
+  <b>Position???:</b>
+  <%= @position %>
+</p>
+
+<%= render 'labels' %>
+
+<%= link_to 'Destroy_Note', @as_note, :confirm => 'Are you sure to delete this notes and all releated label/data?', :method => :delete %> |
+<%= link_to "View_Record", as_note_as_values_path(@as_note) %>

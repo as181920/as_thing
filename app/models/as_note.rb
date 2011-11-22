@@ -35,7 +35,7 @@ class AsNote < ActiveRecord::Base
   end
 
   def get_visible_labels(note)
-    note.as_labels.where(["invisible = ?",false])
+    note.as_labels.where(["invisible = ?",false]).order("position asc")
   end
 
   def destroy_all_releated_data(as_note)
