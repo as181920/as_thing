@@ -84,6 +84,11 @@ class AsValuesController < ApplicationController
     @as_note = AsNote.find(params[:as_note_id])
     @labels = @as_note.get_sorted_labels(@as_note)
     @numero = params[:id]
+    @sort = params[:sort]
+    @direction = params[:direction]
+    @search = params[:search]
+    @label = params[:label]
+    @page = params[:page]
   end
 
   # POST /as_values
@@ -114,11 +119,17 @@ end
   def update
     @as_note = AsNote.find(params[:as_note_id])
     @numero = params[:id]
+    @sort = params[:sort]
+    @direction = params[:direction]
+    @search = params[:search]
+    @label = params[:label]
+    @page = params[:page]
     values = params[:content]
     AsValue.update_entire_record(@numero,values)
 
     respond_to do |format|
-      format.html { redirect_to as_note_as_values_url(@as_note) }
+      format.html { redirect_to(:action=>:index,:sort=>@sort,:direction=>@direction,:search=>@search,:label=>@label,:page=>@page) }
+      #format.html { redirect_to as_note_as_values_url(@as_note) }
       #format.html { redirect_to as_note_as_value_url(@as_note,@numero) }
       #format.xml  { render :xml => @as_value, :status => :created, :location => @as_value }
     end
