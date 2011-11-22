@@ -1,6 +1,12 @@
 class AsValue < ActiveRecord::Base
   belongs_to :as_label
 
+  def self.get_sort_label_id(as_note,p_sort)
+    default_sort = as_note.as_labels.where("default_sort is ?",true).first
+    default_sort = default_sort.id if default_sort
+    p_sort || default_sort
+  end
+
   def self.get_label_selected_array(label_selected)
     case label_selected
     when nil

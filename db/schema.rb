@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111121150319) do
+ActiveRecord::Schema.define(:version => 20111122040912) do
 
   create_table "as_labels", :force => true do |t|
     t.string   "name"
@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(:version => 20111121150319) do
     t.datetime "updated_at"
     t.integer  "as_note_id"
     t.boolean  "invisible",       :default => false
+    t.boolean  "default_sort",    :default => false
   end
 
   create_table "as_notes", :force => true do |t|

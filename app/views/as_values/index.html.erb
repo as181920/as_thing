@@ -17,9 +17,9 @@ Total:  <%= @records_count %> Records
 
 <table>
   <tr>
-    <th><%= link_to "No.", {:sort=>"numero", :direction=>@direction, :search=>@search, :label=>@label_selected}, {:class=>"current #{@sort == 'numero' ? (params[:direction] == 'desc' ? 'asc' : 'desc') : nil}"} %></th>
+    <th><%= link_to "No.", {:sort=>"numero", :direction=>@direction, :search=>@search, :label=>@label_selected}, {:class=>"current #{@sort == 'numero' ? (params[:direction] == 'asc' ? 'desc' : 'asc') : nil}"} %></th>
     <% @labels.each do |as_label| %>
-    <th><%= link_to as_label.name, {:sort=>as_label.id, :direction=>@direction, :search=>@search, :label=>@label_selected}, {:class=>"current #{as_label.id == @sort.to_i ? (params[:direction] == 'desc' ? 'asc' : 'desc') : nil}"} %></th>
+    <th><%= link_to as_label.name, {:sort=>as_label.id, :direction=>@direction, :search=>@search, :label=>@label_selected}, {:class=>"current #{as_label.id == @sort.to_i ? (params[:direction] == 'asc' ? 'desc' : 'asc') : nil}"} %></th>
 
     <% end %>
     <th></th>

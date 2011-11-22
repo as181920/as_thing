@@ -12,8 +12,8 @@ class AsValuesController < ApplicationController
       redirect_to(@as_note, :notice =>'Should add labels first.')
       return
     else
-      @sort = params[:sort]
-      @direction = params[:direction] == "desc" ? "asc" : "desc"
+      @sort = AsValue.get_sort_label_id(@as_note,params[:sort])
+      @direction = params[:direction] == "asc" ? "desc" : "asc"
       @direction_static = params[:direction]
       @labels_select = @labels.collect {|l| [l.name, l.id]}
       @labels_select << ["No.","numero"]

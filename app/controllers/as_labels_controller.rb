@@ -65,6 +65,9 @@ class AsLabelsController < ApplicationController
   def update
     @as_note = AsNote.find(params[:as_note_id])
     @as_label = AsLabel.find(params[:id])
+    if params[:as_label][:default_sort] == "1"
+      @as_note.as_labels.update_all("default_sort = 'f'", "default_sort is 't' and id != #{@as_label.id}")
+    end
 
     respond_to do |format|
       if @as_label.update_attributes(params[:as_label])
