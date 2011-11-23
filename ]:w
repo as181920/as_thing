@@ -21,9 +21,10 @@ class AsNotesController < ApplicationController
   end
 
   def sort_all
-    n_id = AsNote.find(params[:id]).id.to_i
-    o_position = current_user.ownerships.where("as_note_id = ?",n_id).first.position.to_i
-    s_position = params[:s_position].to_i
+    puts "@@@@@@@@@@@@@@@@@@@@"
+    puts n_id = AsNote.find(params[:id]).id.to_i
+    puts o_position = current_user.ownerships.where("as_note_id = ?",n_id).first.position
+    puts s_position = params[:s_position].to_i
     if s_position > o_position then
       current_user.ownerships.update_all("position = position - 1", "position <= #{s_position} and position > #{o_position}")
       current_user.ownerships.update_all("position = #{s_position}", "as_note_id = #{n_id}")
@@ -32,6 +33,7 @@ class AsNotesController < ApplicationController
       current_user.ownerships.update_all("position = #{s_position}", "as_note_id = #{n_id}")
     else
     end
+    puts "@@@@@@@@@@@@@@@@@@@@"
   end
 
   def sort

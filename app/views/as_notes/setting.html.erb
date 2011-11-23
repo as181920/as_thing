@@ -2,10 +2,10 @@
 
 <%= render 'form' %>
 
-<p>
-  <b>Position???:</b>
-  <%= @position %>
-</p>
+<b><%= link_to @as_note.name, as_note_as_values_path(@as_note) %>: Position =></b>
+<%= select_tag(:s_position,options_for_select(@position_sorted,@position)) %>
+</BR>
+</BR>
 
 <%= render 'labels' %>
 

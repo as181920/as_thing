@@ -23,7 +23,9 @@ class AsLabelsController < ApplicationController
 
     position_sorted.each_with_index do |p, i|
       lb = AsLabel.where("id = ?",params[:as_label][i]).first
+      #print "aaa:#{lb.name}\t"
       lb.position = position_sorted[i]
+      #print "bbb:#{lb.position}\n"
       lb.save
     end
   end
@@ -105,7 +107,7 @@ class AsLabelsController < ApplicationController
     l_position = @as_label.position.to_i
     #@as_label.destroy_all_releated_data(@as_label)
     @as_label.destroy
-    AsLabel.update_all("position = position - 1", "position > #{l_position}")
+    current_user.as_labels.update_all("position = position - 1", "position > #{l_position}")
 
     respond_to do |format|
       format.html { redirect_to setting_as_note_path(@as_note) }

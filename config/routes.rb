@@ -7,10 +7,17 @@ AsThing::Application.routes.draw do
   #post 'as_notes/:as_note_id/as_values/:numero' => 'as_values#update'
 
   resources :as_notes do
-    post :sort, on: :collection
-    get :setting, on: :member
+    collection do
+      post :sort
+    end
+    member do
+      get :setting
+      post :sort_all
+    end
     resources :as_labels do
-      post :sort, on: :collection
+      collection do
+        post :sort
+      end
     end
     resources :as_values
   end
