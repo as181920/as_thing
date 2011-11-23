@@ -113,7 +113,12 @@ class AsNotesController < ApplicationController
     @ownership = Ownership.new
     @ownership.as_note = @as_note
     @ownership.user = current_user
-    @ownership.position = current_user.ownerships.order("position desc").first.position.to_i + 1
+    position_max = current_user.ownerships.order("position desc").first
+    if position_max then 
+      @ownership.position = position_max.position.to_i + 1
+    else
+      @ownership.position = 1
+    end
 
     if @ownership.save then
       respond_to do |format|

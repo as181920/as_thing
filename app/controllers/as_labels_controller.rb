@@ -65,7 +65,13 @@ class AsLabelsController < ApplicationController
   def create
     @as_note = AsNote.find(params[:as_note_id])
     @as_label = @as_note.as_labels.build(params[:as_label])
-    @as_label.position = @as_note.as_labels.order("position desc").first.position.to_i + 1
+
+    position_max = @as_note.as_labels.order("position desc").first
+    if position_max then 
+      @as_label.position = position_max.position.to_i + 1
+    else
+      @as_label.position = 1
+    end
 
     respond_to do |format|
       if @as_label.save
