@@ -27,7 +27,11 @@ AsThing::Application.routes.draw do
   get "sign_up" => "users#new", :as => "sign_up"
   get "public" => "AsNotes#public", :as => "public"
 
-  resources :users
+  resources :users do
+    collection do
+      get :all
+    end
+  end
   resources :sessions
 
   #root :to => 'as_notes#index'

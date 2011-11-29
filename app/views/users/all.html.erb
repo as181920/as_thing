@@ -1,0 +1,20 @@
+Total:  <%= @total %> users
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<%= paginate @users %>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+<%= form_tag all_users_path, :method=>"get" do %>
+  <%= select_tag(:user_attr,options_for_select(@select_array,@selected)) %>
+  <%= text_field_tag(:search, @search,:size=>"15") %>
+	<%= submit_tag "Search", :name=>nil %>
+<% end %>
+
+
+<ul id="users">
+<% @users.each do |user| %>
+  <%= content_tag_for :li, user do %>
+    <%= link_to user.email, user_path(user) %><br />
+  <% end %>
+<% end %>
+</ul>
+

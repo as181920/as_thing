@@ -1,0 +1,9 @@
+
+<ul id="users">
+<% @users.each do |user| %>
+  <%= content_tag_for :li, user do %>
+    <%= link_to user.email, user_path(user) %><br />
+  <% end %>
+<% end %>
+</ul>
+
