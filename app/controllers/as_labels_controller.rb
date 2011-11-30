@@ -113,7 +113,7 @@ class AsLabelsController < ApplicationController
     l_position = @as_label.position.to_i
     #@as_label.destroy_all_releated_data(@as_label)
     @as_label.destroy
-    current_user.as_labels.update_all("position = position - 1", "position > #{l_position}")
+    @as_note.as_labels.update_all("position = position - 1", "position > #{l_position}")
 
     respond_to do |format|
       format.html { redirect_to setting_as_note_path(@as_note) }
