@@ -33,13 +33,13 @@ class AsValuesController < ApplicationController
       format.csv do
         #csv_data = FasterCSV.generate do |csv|
         csv_data = CSV.generate do |csv|
-          th = ["No."] + @as_note.as_labels.collect {|lb| lb.name }
+          th = ["No."] + @as_note.get_sorted_labels(@as_note).collect {|lb| lb.name }
           csv << th
 
           lvalues_all = AsValue.get_lvalues_all(@as_note,@sort,@direction,@label_selected,@search)
           lvalues_all.each do |lv|
             tr = [lv.numero]
-            @as_note.as_labels.each do |lb|
+            @as_note.get_sorted_labels(@as_note).each do |lb|
               cv = AsValue.current_value(lv.numero,lb.id)
               if lb.label_format = "Text" then
                 cv = Nokogiri::HTML.parse(cv).content
