@@ -1,3 +1,4 @@
+require "csv"
 class AsValuesController < ApplicationController
   #before_filter :require_owned
   before_filter :check_permission
