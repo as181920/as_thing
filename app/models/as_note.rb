@@ -31,7 +31,8 @@ class AsNote < ActiveRecord::Base
   end
 
   def get_sorted_labels(note)
-    note.as_labels
+    #note.as_labels
+    note.as_labels.order("position asc")
   end
 
   def get_visible_labels(note)
