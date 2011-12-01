@@ -4,7 +4,7 @@ gem 'rails', '3.0.0'
 gem "jquery-rails"
 gem "kaminari"
 gem "bcrypt-ruby", :require => "bcrypt"
-gem "fastercsv"
+#gem "fastercsv"
 gem "nokogiri"
 #gem "acts_as_list"
 #gem "coffee-script"

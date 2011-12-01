@@ -30,7 +30,8 @@ class AsValuesController < ApplicationController
     respond_to do |format|
       format.html # show.html.erb
       format.csv do
-        csv_data = FasterCSV.generate do |csv|
+        #csv_data = FasterCSV.generate do |csv|
+        csv_data = CSV.generate do |csv|
           th = ["No."] + @as_note.as_labels.collect {|lb| lb.name }
           csv << th
 
