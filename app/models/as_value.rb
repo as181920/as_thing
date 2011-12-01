@@ -150,17 +150,25 @@ class AsValue < ActiveRecord::Base
   end
 
   def self.get_record_created_date(labels,numero)
-    created_at = labels.first.as_values.find_by_numero(numero).created_at
+    created_at = DateTime.now
     labels.each do |lb|
-      created_at = (created_at <= lb.as_values.find_by_numero(numero).created_at)? created_at : lb.as_values.find_by_numero(numero).created_at
+      v = lb.as_values.find_by_numero(numero)
+      if v then
+        created_at = (created_at <= v.created_at)? created_at : v.created_at
+      else
+      end
     end
     created_date = created_at.strftime("%Y-%m-%d")
   end
 
   def self.get_record_updated_date(labels,numero)
-    updated_at = labels.first.as_values.find_by_numero(numero).updated_at
+    updated_at = DateTime.new
     labels.each do |lb|
-      updated_at = (updated_at >= lb.as_values.find_by_numero(numero).updated_at)? updated_at : lb.as_values.find_by_numero(numero).updated_at
+      v = lb.as_values.find_by_numero(numero)
+      if v then
+        updated_at = (updated_at >= v.updated_at)? updated_at : v.updated_at
+      else
+      end
     end
     updated_date = updated_at.strftime("%Y-%m-%d")
   end
