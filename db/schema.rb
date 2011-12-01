@@ -10,27 +10,21 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111129094852) do
+ActiveRecord::Schema.define(:version => 20111201024429) do
 
   create_table "as_labels", :force => true do |t|
     t.string   "name"
     t.text     "comment"
     t.string   "label_format"
     t.text     "possible_values"
-    t.integer  "min_length"
-    t.integer  "max_length"
-    t.string   "regexp"
     t.boolean  "is_required"
-    t.boolean  "is_filter"
     t.integer  "position"
     t.text     "default_value"
-    t.boolean  "editable"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "as_note_id"
     t.boolean  "invisible",       :default => false
     t.boolean  "default_sort",    :default => false
-    t.boolean  "unsearchable",    :default => false
   end
 
   create_table "as_notes", :force => true do |t|

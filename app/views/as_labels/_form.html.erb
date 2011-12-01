@@ -24,40 +24,12 @@
 		<%= f.text_area :possible_values %>
   </div>
   <div class="field">
-    <%= f.label :comment %><br />
-    <%= f.text_area :comment %>
-  </div>
-  <div class="field">
-    <%= f.label :min_length %><br />
-    <%= f.text_field :min_length %>
-  </div>
-  <div class="field">
-    <%= f.label :max_length %><br />
-    <%= f.text_field :max_length %>
-  </div>
-  <div class="field">
-    <%= f.label :regexp %><br />
-    <%= f.text_field :regexp %>
-  </div>
-  <div class="field">
-    <%= f.label :is_required %><br />
-    <%= f.check_box :is_required %>
-  </div>
-  <div class="field">
-    <%= f.label :is_filter %><br />
-    <%= f.check_box :is_filter %>
-  </div>
-  <div class="field">
-    <%= f.label :unsearchable %><br />
-    <%= f.check_box :unsearchable %>
-  </div>
-  <div class="field">
     <%= f.label :default_value %><br />
     <%= f.text_area :default_value %>
   </div>
   <div class="field">
-    <%= f.label :editable %><br />
-    <%= f.check_box :editable %>
+    <%= f.label :is_required %><br />
+    <%= f.check_box :is_required %>
   </div>
   <div class="field">
     <%= f.label :default_sort %><br />
@@ -66,6 +38,10 @@
   <div class="field">
     <%= f.label :invisible %><br />
     <%= f.check_box :invisible %>
+  </div>
+  <div class="field">
+    <%= f.label :comment %><br />
+    <%= f.text_area :comment %>
   </div>
   <div class="actions">
     <%= f.submit("Submit") %>
