@@ -1,10 +1,14 @@
-html,body {
+html,
+body {
 	/*background: #CACACA;*/
 	/*font-family: "Trebuchet MS", Verdana, serif*/
   margin:0;
+  padding:0;
+  height: 100%;
 }
 #container {
-	margin: 0 auto;
+  min-height: 100%;
+  position:relative;
 	width: 100%
 }
 #header {
@@ -47,18 +51,58 @@ html,body {
 	width: 100%;
 	background: #FFFFFF;
 } 
+#notes_list {
+  float: left;
+  width: 68%;
+  text-align: center;
+  padding: 0 30px 0 30px;
+  /*border-right: #8C8484 1px solid;*/
+  font-size: 26px;
+  line-height: 40px;
+}
+#notes_list ul li {
+  text-align: center;
+  list-style-type: disc;
+}
+.list_head {
+  font-size: 14px;
+}
+.side_menu {
+  float: right;
+  padding: 0 10px 0 10px;
+  border-left: #CACACA 2px solid;
+  text-align: left;
+  font-size: 16px;
+  color: blue;
+  /*font-weight: bold;*/
+  line-height: 40px;
+}
+.side_menu ul li {
+  margin-right:: 0;
+  padding: 10px 0 10px 0px;
+  list-style-type:circle
+}
+#clear {
+  display: block;
+  clear: both;
+  width: 100%;
+  height:1px;
+  overflow:hidden;
+}
 #main_content_bottom {
-	height: 30px;
+	height: 20px;
 	background: #FFFFFF;
+  padding:10px;
+  padding-bottom:20px;   /* Height of the footer */
 }
 #footer {
+  /*position:absolute;*/
   position: relative;
-  height:50px
-  clear:both;
 	text-align: center;
+  height:50px;   /* Height of the footer */
+  clear:both;
 	font-size: 12px;
-	margin: 10px auto
-  width: 100%
+  width: 100%;
 }
 a { color: black }
 a:hover { font-weight: bold; }
@@ -128,9 +172,4 @@ form {
   display: inline
 }
 
-ul {
-  font-family: verdana, arial, helvetica, sans-serif;
-  font-size:   23px;
-  line-height: 35px;
-}
 
