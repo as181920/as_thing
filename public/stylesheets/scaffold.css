@@ -9,13 +9,13 @@ html,body {
 }
 #header {
   background-color: #CACACA;
-  font-size: 20pt;
+  font-size: 14pt;
 }
 #sub_header_left {
   float: left;
 	text-align: left;
   font-weight: bold;
-  font-size: 20pt;
+  font-size: 14pt;
 }
 #sub_header_left a {
   color: black;
@@ -30,9 +30,9 @@ html,body {
 	color: blue;
 	text-align: right;
 	font-weight: bold;
-	font-size: 14px;
-	padding-right: 14px;
-  padding-top: 14px;
+	font-size: 12px;
+	padding-right: 12px;
+  padding-top: 6px;
 }
 #sub_header_right a {
   color: black;
