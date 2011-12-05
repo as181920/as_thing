@@ -17,15 +17,15 @@
   </div>
   <div class="field">
     <%= f.label :label_format %><br />
-    <%= f.select(:label_format,["","String","Text","Date","Time","Numeric","Select","MultiSelect"]) %>
+    <%= f.select(:label_format,["","String","Text","RichText","Date","Time","Numeric","Select","MultiSelect"]) %>
   </div>
   <div class="field">
     <%= f.label :possible_values %>  (splited by space)<br />
-		<%= f.text_area :possible_values %>
+		<%= f.text_area :possible_values, :size=>"80x5" %>
   </div>
   <div class="field">
     <%= f.label :default_value %><br />
-    <%= f.text_area :default_value %>
+    <%= f.text_area :default_value, :size=>"80x5" %>
   </div>
   <div class="field">
     <%= f.label :is_required %><br />
@@ -41,7 +41,7 @@
   </div>
   <div class="field">
     <%= f.label :comment %><br />
-    <%= f.text_area :comment %>
+    <%= f.text_area :comment, :size=>"80x5" %>
   </div>
   <div class="actions">
     <%= f.submit("Submit") %>

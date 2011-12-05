@@ -39,3 +39,8 @@ $(document).ready ->
           #$("#logo_side").append $('#s_position')[0].value
         error: (jqXHR, textStatus, errorThrown) ->
           $("#logo_side").append "ajax error!"
+
+#$(document).ready ->
+#  $(".mceEditor")
+#    .resizable()
+
