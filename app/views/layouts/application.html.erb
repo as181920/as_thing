@@ -10,31 +10,47 @@
   <%= include_tiny_mce_if_needed %>
 
 </head>
-<body id="head_side">
-  <div>
-    <div id="logo_side">
-      <%= link_to "Notes", as_notes_path %>
-    </div>
-    <div id="user_side">
-      <% if current_user %>
-        <%= current_user.email %> |
-        <%= link_to "Log out", log_out_path %>
-      <% else %>
-        <%= link_to "Log in", log_in_path %> or 
-        <%= link_to "Sign up", sign_up_path %>
-      <% end %>
-    </div>
-  </div>
-  <div id="main">
-    <% flash.each do |name,msg| %>
-      <%= content_tag :div, msg, :id=>"flash#{name}" %>
-    <% end %>
+<body>
+  <div id="container">
 
-    <div id="border1">
-      <p>--------------------------------------------------------------------------------------------------------------------------------------------</p>
+    <div id="header">
+    &nbsp;
+
+      <div id="sub_header_left">
+        <%= link_to "Notes", as_notes_path %>
+        <% flash.each do |name,msg| %>
+          <%= content_tag :div, msg, :id=>"flash#{name}" %>
+        <% end %>
+      </div>
+
+      <div id="sub_header_right">
+        <% if current_user %>
+          <%= current_user.email %> |
+          <%= link_to "Log out", log_out_path %>
+        <% else %>
+          <%= link_to "Log in", log_in_path %> or 
+          <%= link_to "Sign up", sign_up_path %>
+        <% end %>
+      </div>
+
     </div>
 
-    <%= yield %>
+
+    <div id="main_content_top">
+    </div>
+
+    <div id="main_content">
+
+      <%= yield %>
+
+    </div>
+
+    <div id="main_content_bottom">
+    </div>
+
+    <div id="footer">
+      <p>Created by <strong>Andersen_Fan</strong> |Any question please mail to:<strong>as181920@hotmail.com</strong></p>
+    </div>
 
   </div>
 </body>
