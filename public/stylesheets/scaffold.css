@@ -51,6 +51,10 @@ body {
 	width: 98%;
 	background: #FFFFFF;
 } 
+#login {
+  /*float: left;*/
+  text-align: center;
+}
 #notes_list {
   float: left;
   width: 68%;
