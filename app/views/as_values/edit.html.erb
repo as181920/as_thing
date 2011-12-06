@@ -1,5 +1,3 @@
-<h1>Editing Record</h1>
-
 <%= form_tag({:action=>"update",:sort=>@sort,:direction=>@direction,:search=>@search,:label=>@label,:page=>@page},:method=>"put") do %>
   <%= render 'form_content' %>
 <% end %>
