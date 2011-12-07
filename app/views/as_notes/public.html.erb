@@ -1,18 +1,40 @@
-Total:  <%= @total %> Notes
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<%= paginate @as_notes %>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<div id="public_notes_list">
+  <div class="list_head">
+    Total:  <%= @total %> Notes
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <%= paginate @as_notes %>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-<%= form_tag "public", :method=>"get" do %>
-  <%= select_tag(:label,options_for_select(@labels_select,@label_selected)) %>
-  <%= text_field_tag(:search, @search,:size=>"15") %>
-	<%= submit_tag "Search", :name=>nil %>
-<% end %>
+    <%= form_tag "public", :method=>"get" do %>
+      <%= select_tag(:label,options_for_select(@labels_select,@label_selected)) %>
+      <%= text_field_tag(:search, @search,:size=>"15") %>
+      <%= submit_tag "Search", :name=>nil %>
+    <% end %>
+  </div>
 
-<ul id="public_notes">
-<% @as_notes.each do |as_note| %>
-  <%= content_tag_for :li, as_note do %>
-    <%= link_to as_note.name, as_note_as_values_path(as_note),:title=>Nokogiri::HTML.parse(as_note.comment).content %><br />
+  <ul id="public_notes">
+  <% @as_notes.each do |as_note| %>
+    <%= content_tag_for :li, as_note do %>
+      <%= link_to as_note.name, as_note_as_values_path(as_note),:title=>Nokogiri::HTML.parse(as_note.comment).content %><br />
+    <% end %>
   <% end %>
-<% end %>
-</ul>
+  </ul>
+</div>
+
+<div class="side_menu">
+  <ul>
+    <li>
+    <%= link_to 'New Note', new_as_note_path, :class=>"menu_link" %> 
+    </li>
+    <li>
+      <%= link_to 'View my notes', as_notes_path, :class=>"menu_link" %> 
+    </li>
+    <li>
+      <%= link_to 'View following users', all_users_path, :class=>"menu_link" %> 
+    </li>
+    <li>
+      <%= link_to 'View all users', all_users_path, :class=>"menu_link" %>
+    </li>
+  </ul>
+</div>
+
