@@ -16,20 +16,10 @@
   <%= render "list" %>
 </div>
 
-<div class="side_menu">
-  <ul>
-    <li>
-    <%= link_to 'New Note', new_as_note_path, :class=>"menu_link" %> 
-    </li>
-    <li>
-      <%= link_to 'View public notes', "public", :class=>"menu_link" %> 
-    </li>
-    <li>
-      <%= link_to 'View following users', all_users_path, :class=>"menu_link" %> 
-    </li>
-    <li>
-      <%= link_to 'View all users', all_users_path, :class=>"menu_link" %>
-    </li>
-  </ul>
+<div class="header_menu">
+  <%= link_to 'New Note', new_as_note_path, :class=>"menu_link" %> &nbsp;
+  <%= link_to 'Public notes', "public", :class=>"menu_link" %> &nbsp;
+  <%= link_to 'Following users', all_users_path, :class=>"menu_link" %> &nbsp;
+  <%= link_to 'All users', all_users_path, :class=>"menu_link" %>
 </div>
 

@@ -1,6 +1,21 @@
 
 $(document).ready(function() {
   var _this = this;
+  return $("#sub_header_right").bind('mouseenter', function(event, ui) {});
+});
+
+$(document).ready(function() {
+  var _this = this;
+  return $("#header").bind('mouseenter', function(event, ui) {
+    $(".header_menu").show();
+    return $("#header").append($(".header_menu"));
+  }).bind('mouseleave', function(event, ui) {
+    return $(".header_menu").hide();
+  });
+});
+
+$(document).ready(function() {
+  var _this = this;
   return $("#as_notes").sortable().bind('sortstop', function(event, ui) {
     return $.ajax({
       url: "/as_notes/sort",
@@ -8,7 +23,7 @@ $(document).ready(function() {
       data: $('#as_notes').sortable('serialize'),
       success: function() {},
       error: function() {
-        return $("#logo_side").append("ajax error!");
+        return $("#header").append("ajax error!");
       }
     });
   });
@@ -26,7 +41,7 @@ $(document).ready(function() {
       data: $('#as_labels').sortable('serialize'),
       success: function(data, textStatus, jqXHR) {},
       error: function(jqXHR, textStatus, errorThrown) {
-        return $("#logo_side").append("ajax error!");
+        return $("#header").append("ajax error!");
       }
     });
   });
@@ -44,7 +59,7 @@ $(document).ready(function() {
       data: $('#s_position'),
       success: function(data, textStatus, jqXHR) {},
       error: function(jqXHR, textStatus, errorThrown) {
-        return $("#logo_side").append("ajax error!");
+        return $("#header").append("ajax error!");
       }
     });
   });

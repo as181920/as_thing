@@ -41,6 +41,17 @@ body {
 #sub_header_right a {
   color: black;
 }
+.header_menu {
+  display: none;
+  float: left;
+	/*text-align: left;*/
+	font-size: 12px;
+	padding-left: 12px;
+  padding-top: 6px;
+}
+.header_menu a {
+	color: blue;
+}
 #main_content_top {
 	height: 30px;
 	background: #FFFFFF;
@@ -56,8 +67,7 @@ body {
   text-align: center;
 }
 #notes_list {
-  float: left;
-  width: 68%;
+  float: center;
   text-align: center;
   padding: 0 30px 0 30px;
   /*border-right: #8C8484 1px solid;*/
@@ -72,8 +82,7 @@ body {
   font-size: 14px;
 }
 #public_notes_list {
-  float: left;
-  width: 68%;
+  float: center;
   text-align: center;
   padding: 0 30px 0 30px;
   font-size: 26px;
@@ -83,6 +92,7 @@ body {
   text-align: center;
   list-style-type: disc;
 }
+/*
 .side_menu {
   float: right;
   padding: 0 10px 0 10px;
@@ -90,7 +100,6 @@ body {
   text-align: left;
   font-size: 16px;
   color: blue;
-  /*font-weight: bold;*/
   line-height: 40px;
 }
 .side_menu ul li {
@@ -98,6 +107,7 @@ body {
   padding: 10px 0 10px 0px;
   list-style-type:circle
 }
+*/
 #clear {
   display: block;
   clear: both;
