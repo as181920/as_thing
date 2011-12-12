@@ -29,7 +29,7 @@ $(document).ready ->
     .sortable()
     .bind 'sortstop', (event,ui) =>
       href=location.href
-      url=href.substring(0,href.length-7)+"as_labels/sort"
+      url=href+"/sort"
       $.ajax
         url: url
         type: "post"
@@ -43,7 +43,7 @@ $(document).ready ->
   $("#s_position")
     .bind 'change', (event, ui) =>
       href=location.href
-      url=href.substring(0,href.length-7)+"sort_all"
+      url=href.substring(0,href.length-4)+"sort_all"
       $.ajax
         url: url
         type: "post"

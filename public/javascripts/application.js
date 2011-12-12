@@ -34,7 +34,7 @@ $(document).ready(function() {
   return $("#as_labels").sortable().bind('sortstop', function(event, ui) {
     var href, url;
     href = location.href;
-    url = href.substring(0, href.length - 7) + "as_labels/sort";
+    url = href + "/sort";
     return $.ajax({
       url: url,
       type: "post",
@@ -52,7 +52,7 @@ $(document).ready(function() {
   return $("#s_position").bind('change', function(event, ui) {
     var href, url;
     href = location.href;
-    url = href.substring(0, href.length - 7) + "sort_all";
+    url = href.substring(0, href.length - 4) + "sort_all";
     return $.ajax({
       url: url,
       type: "post",

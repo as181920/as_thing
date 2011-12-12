@@ -77,19 +77,6 @@ class AsNotesController < ApplicationController
     end
   end
 
-  # GET /as_notes/1/setting
-  def setting
-    @as_note = AsNote.find(params[:id])
-    @as_labels = @as_note.as_labels.order("position asc")
-    @position = @as_note.ownerships.where("user_id = ?",current_user).first.position
-    @position_sorted = (Ownership.where("user_id = ?",current_user).collect {|o| o.position }).sort
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @as_note }
-    end
-  end
-
   # GET /as_notes/new
   # GET /as_notes/new.xml
   def new
@@ -104,6 +91,8 @@ class AsNotesController < ApplicationController
   # GET /as_notes/1/edit
   def edit
     @as_note = AsNote.find(params[:id])
+    @position = @as_note.ownerships.where("user_id = ?",current_user).first.position
+    @position_sorted = (Ownership.where("user_id = ?",current_user).collect {|o| o.position }).sort
   end
 
   # POST /as_notes

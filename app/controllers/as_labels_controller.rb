@@ -5,7 +5,6 @@ class AsLabelsController < ApplicationController
   # GET /as_labels.xml
   def index
     @as_note = AsNote.find(params[:as_note_id])
-    #@as_labels = @as_note.as_labels
     @as_labels = @as_note.as_labels.order("position asc")
 
     respond_to do |format|
@@ -75,7 +74,7 @@ class AsLabelsController < ApplicationController
 
     respond_to do |format|
       if @as_label.save
-        format.html { redirect_to(setting_as_note_path(@as_note), :notice => 'As label was successfully created.') }
+        format.html { redirect_to(as_note_as_labels_path(@as_note), :notice => 'As label was successfully created.') }
         #format.xml  { render :xml => @as_label, :status => :created, :location => @as_label }
       else
         format.html { render :action => "new" }
@@ -96,7 +95,7 @@ class AsLabelsController < ApplicationController
     respond_to do |format|
       if @as_label.update_attributes(params[:as_label])
         #format.html { redirect_to([@as_note,@as_label], :notice => 'As label was successfully updated.') }
-        format.html { redirect_to(setting_as_note_path(@as_note), :notice => 'As label was successfully updated.') }
+        format.html { redirect_to(as_note_as_labels_path(@as_note), :notice => 'As label was successfully updated.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -116,7 +115,7 @@ class AsLabelsController < ApplicationController
     @as_note.as_labels.update_all("position = position - 1", "position > #{l_position}")
 
     respond_to do |format|
-      format.html { redirect_to setting_as_note_path(@as_note) }
+      format.html { redirect_to as_note_as_labels_path(@as_note) }
       format.xml  { head :ok }
     end
   end

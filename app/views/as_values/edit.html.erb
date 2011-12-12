@@ -1,7 +1,11 @@
+<div class="header_menu">
+  <%= link_to 'Cancel', as_note_as_values_path(@as_note) %> &nbsp;
+</div>
+
+<b> <%= link_to @as_note.name, as_note_as_values_path %>: Edit_Note_Record</b> 
+<BR/>
+
 <%= form_tag({:action=>"update",:sort=>@sort,:direction=>@direction,:search=>@search,:label=>@label,:page=>@page},:method=>"put") do %>
   <%= render 'form_content' %>
 <% end %>
 
-<BR />
-<%= link_to 'Back', as_note_as_values_path(@as_note) %> |
-<%= link_to 'Show', as_note_as_value_path(@as_note,@numero) %>

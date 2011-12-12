@@ -11,7 +11,6 @@ AsThing::Application.routes.draw do
       post :sort
     end
     member do
-      get :setting
       post :sort_all
     end
     resources :as_labels do

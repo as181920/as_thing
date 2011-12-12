@@ -1,6 +1,11 @@
-<p id="notice"><%= notice %></p>
+<div class="header_menu">
+  <%= link_to 'View_Note_Records', as_note_as_values_path(@as_note) %> &nbsp;
+  <%= link_to 'Edit_This_Record', edit_as_note_as_value_path(@as_note, @numero) %> &nbsp;
+  <%= link_to 'Destroy_This_Record', as_note_as_value_path(@as_note,@numero), :confirm=>'Are you sure to delete this record?', :method=>:delete %>
+</div>
 
-<h1>Record Detail:</h1>
+<b> <%= link_to @as_note.name, as_note_as_values_path %>: Show_Record_Detail</b> 
+<BR/>
 
 <% @labels.each do |as_label| %>
 <p>
@@ -17,6 +22,3 @@
   <pre><%= AsValue.get_record_updated_date(@labels,@numero) %></pre>
 </p>
 
-<%= link_to 'Back to data list', as_note_as_values_path(@as_note) %> |
-<%= link_to 'Edit', edit_as_note_as_value_path(@as_note, @numero) %> |
-<%= link_to 'Destroy', as_note_as_value_path(@as_note,@numero), :confirm=>'Are you sure to delete this record?', :method=>:delete %>

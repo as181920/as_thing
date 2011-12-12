@@ -1,3 +1,10 @@
+<div class="header_menu">
+  <%= link_to 'New Note', new_as_note_path, :class=>"menu_link" %> &nbsp;
+  <%= link_to 'Public notes', "public", :class=>"menu_link" %> &nbsp;
+  <%= link_to 'Following users', all_users_path, :class=>"menu_link" %> &nbsp;
+  <%= link_to 'All users', all_users_path, :class=>"menu_link" %>
+</div>
+
 <div id="notes_list">
   <div class="list_head">
     Total:  <%= @total %> Notes
@@ -14,12 +21,5 @@
   </div>
 
   <%= render "list" %>
-</div>
-
-<div class="header_menu">
-  <%= link_to 'New Note', new_as_note_path, :class=>"menu_link" %> &nbsp;
-  <%= link_to 'Public notes', "public", :class=>"menu_link" %> &nbsp;
-  <%= link_to 'Following users', all_users_path, :class=>"menu_link" %> &nbsp;
-  <%= link_to 'All users', all_users_path, :class=>"menu_link" %>
 </div>
 

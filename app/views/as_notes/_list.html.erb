@@ -1,21 +1,3 @@
-<!--
-<table>
-  <tr>
-    <th>Id</th>
-    <th>Name</th>
-    <th>Comment</th>
-  </tr>
-
-<% @as_notes.each do |as_note| %>
-  <tr>
-    <td><%= link_to as_note.id, as_note_as_values_path(as_note) %></td>
-    <td><%= link_to as_note.name, as_note_as_values_path(as_note) %></td>
-    <td><pre><%= raw as_note.comment %></pre></td>
-  </tr>
-<% end %>
-</table>
--->
-
 <ul id="as_notes">
 <% @as_notes.each do |as_note| %>
   <%= content_tag_for :li, as_note do %>

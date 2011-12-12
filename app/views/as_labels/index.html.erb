@@ -1,27 +1,17 @@
-<h1>Listing as_labels</h1>
+<div class="header_menu">
+  <%= link_to 'Add_Note_Column', new_as_note_as_label_path(@as_note) %> &nbsp;
+  <%= link_to 'Set_Note_Information', edit_as_note_path(@as_note) %> &nbsp;
+  <%= link_to "View_Note_Records", as_note_as_values_path(@as_note) %> 
+</div>
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Comment</th>
-    <th>Label format</th>
-    <th></th>
-    <th></th>
-  </tr>
 
+<b><%= link_to @as_note.name, as_note_as_values_path(@as_note) %>: Set_Note_Columns</b>
+
+<ul id="as_labels">
 <% @as_labels.each do |as_label| %>
-  <tr>
-    <td><%= link_to as_label.name, as_note_as_label_path(@as_note,as_label) %></td>
-    <td><%= as_label.comment %></td>
-    <td><%= as_label.label_format %></td>
-    <td><%= link_to 'Edit', edit_as_note_as_label_path(@as_note,as_label) %></td>
-    <td><%= link_to 'Destroy', [@as_note,as_label], :confirm => 'Are you sure to delete this column and all releated data?', :method => :delete %></td>
-  </tr>
+  <%= content_tag_for :li, as_label do %>
+    <%= link_to as_label.name, edit_as_note_as_label_path(@as_note,as_label) %><span style="font-size:12px">( <%= as_label.label_format %> )</span><br />
+  <% end %>
 <% end %>
-</table>
+</ul>
 
-<br />
-
-<%= link_to 'View Detail', @as_note %> |
-<%= link_to 'New Label', new_as_note_as_label_path(@as_note) %> |
-<%= link_to 'View Data', as_note_as_values_path(@as_note) %>

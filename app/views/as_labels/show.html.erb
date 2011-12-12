@@ -1,3 +1,13 @@
+<div class="header_menu">
+  <%= link_to 'Edit_Note_Column', edit_as_note_as_label_path(@as_note,@as_label) %> &nbsp;
+  <%= link_to 'Del_Note_column', [@as_note,@as_label], :confirm=>'Are you sure to delete this label and all related data?', :method=>:delete %>&nbsp;
+  <%= link_to 'View_Note_Columns', as_note_as_labels_path(@as_note) %> &nbsp;
+  <%= link_to "View_Note_Records", as_note_as_values_path(@as_note) %> 
+</div>
+
+<b><%= link_to @as_note.name, as_note_as_values_path(@as_note) %>: Note_Column_Detail</b>
+<BR/>
+
 <p>
   <b>Name:</b>
   <%= @as_label.name %>
@@ -43,7 +53,3 @@
   <%= @as_label.comment %>
 </p>
 
-
-<%= link_to 'Back', as_note_as_labels_path(@as_note) %> |
-<%= link_to 'Edit', edit_as_note_as_label_path(@as_note,@as_label) %> |
-<%= link_to 'Destroy', [@as_note,@as_label], :confirm=>'Are you sure to delete this label and all related data?', :method=>:delete %>

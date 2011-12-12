@@ -1,7 +1,11 @@
-<h1>Editing as_label</h1>
+<div class="header_menu">
+  <%= link_to 'Cancel', as_note_as_labels_path(@as_note) %> &nbsp;
+  <%= link_to 'Del_Note_column', [@as_note,@as_label], :confirm => 'Are you sure to delete this column and all releated data?', :method => :delete %> 
+</div>
+
+<b><%= link_to @as_note.name, as_note_as_values_path(@as_note) %>: Edit_Note_Column</b>
+<BR/>
+<BR/>
 
 <%= render 'form' %>
 
-<%= link_to 'Cancel', as_note_as_labels_path(@as_note) %> |
-<%= link_to 'Destroy', [@as_note,@as_label], :confirm => 'Are you sure to delete this column and all releated data?', :method => :delete %> |
-<%= link_to 'Show', [@as_note,@as_label] %>

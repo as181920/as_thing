@@ -1,4 +1,11 @@
-<h1>Note Detail:</h1>
+<div class="header_menu">
+  <%= link_to 'Set_Note_Information', edit_as_note_path(@as_note) %> &nbsp;
+  <%= link_to 'Set_Note_Columns', as_note_as_labels_path(@as_note) %> &nbsp;
+  <%= link_to 'Destroy_Note', @as_note, :confirm => 'Are you sure to delete this notes and all releated label/data?', :method => :delete %> &nbsp;
+  <%= link_to "View_Note_Records", as_note_as_values_path(@as_note) %> 
+</div>
+
+<b><%= link_to @as_note.name, as_note_as_values_path(@as_note) %>: Show_Note_Information</b>
 <p>
   <b>Name:</b>
   <%= @as_note.name %>
@@ -29,7 +36,3 @@
   <%= @as_note.get_updated_date(@as_note) %>
 </p>
 
-<%= link_to 'Edit', edit_as_note_path(@as_note) %> |
-<%= link_to 'Destroy', @as_note, :confirm => 'Are you sure to delete this notes and all releated label/data?', :method => :delete %> |
-<%= link_to "set labels", as_note_as_labels_path(@as_note) %> |
-<%= link_to "view data", as_note_as_values_path(@as_note) %>

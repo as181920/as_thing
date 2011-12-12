@@ -1,8 +1,10 @@
-<!--<h1>Listing Records</h1>-->
-<!-- link_to 'Home', as_notes_path -->
-<b> <%= link_to @as_note.name, as_note_as_values_path %>: </b> (
-<%= link_to 'Setting', setting_as_note_path(@as_note) %> |
-<%= link_to 'Add', new_as_note_as_value_path(@as_note) %> )
+<div class="header_menu">
+  <%= link_to 'Add_Record', new_as_note_as_value_path(@as_note) %> &nbsp;
+  <%= link_to 'Set_Note_Information', edit_as_note_path(@as_note) %> &nbsp;
+  <%= link_to 'Set_Note_Columns', as_note_as_labels_path(@as_note) %> &nbsp;
+</div>
+
+<b> <%= link_to @as_note.name, as_note_as_values_path %></b> 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 Total:  <%= @records_count %> Records
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
