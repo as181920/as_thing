@@ -24,13 +24,18 @@ Total:  <%= @records_count %> Records
     <th><%= link_to as_label.name, {:sort=>as_label.id, :direction=>@direction, :search=>@search, :label=>@label_selected}, {:class=>"current #{as_label.id == @sort.to_i ? (params[:direction] == 'asc' ? 'desc' : 'asc') : nil}"} %></th>
 
     <% end %>
-    <th></th>
-    <th></th>
   </tr>
 
   <% @l_values_page.each do |v| %>
   <tr>
-    <td><%= link_to v.numero, as_note_as_value_path(@as_note, v.numero) %></td>
+    <td class="numero">
+      <%= link_to v.numero, as_note_as_value_path(@as_note, v.numero) %>
+      <div class="navmenu">
+        <%= link_to 'Edit', edit_as_note_as_value_path(@as_note, v.numero,:sort=>@sort,:direction=>@direction_static,:search=>@search,:label=>@label_selected,:page=>@page_number) %>
+        <BR/>
+        <%= link_to 'Delete', as_note_as_value_path(@as_note,v.numero,:sort=>@sort,:direction=>@direction_static,:search=>@search,:label=>@label_selected,:page=>@page_number), :confirm=>'Are you sure to delete this record?', :method=>:delete %>
+      </div>
+    </td>
     <% @labels.each do |as_label| %>
 			<% case as_label.label_format %>
 			<% when "Datee" %>
@@ -41,8 +46,6 @@ Total:  <%= @records_count %> Records
 				<td><pre><%= AsValue.current_value(v.numero, as_label.id) %></pre></td>
 			<% end %>
     <% end %>
-    <td><%= link_to 'Edit', edit_as_note_as_value_path(@as_note, v.numero,:sort=>@sort,:direction=>@direction_static,:search=>@search,:label=>@label_selected,:page=>@page_number) %></td>
-		<td><%= link_to 'Destroy', as_note_as_value_path(@as_note,v.numero,:sort=>@sort,:direction=>@direction_static,:search=>@search,:label=>@label_selected,:page=>@page_number), :confirm=>'Are you sure to delete this record?', :method=>:delete %></td>
   </tr>
   <% end %>
 </table>

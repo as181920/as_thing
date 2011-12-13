@@ -108,6 +108,15 @@ body {
   list-style-type:circle
 }
 */
+.navmenu {
+  /*float: left;*/
+  display: none;
+	color: blue;
+	font-size: 12px;
+}
+.navmenu a {
+	color: blue;
+}
 #clear {
   display: block;
   clear: both;

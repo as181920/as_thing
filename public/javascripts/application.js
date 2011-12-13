@@ -6,6 +6,15 @@ $(document).ready(function() {
 
 $(document).ready(function() {
   var _this = this;
+  return $(".numero").bind('mouseenter', function(event, ui) {
+    return console.log(event.currentTarget.lastElementChild.style.display = "block");
+  }).bind('mouseleave', function(event, ui) {
+    return console.log(event.currentTarget.lastElementChild.style.display = "none");
+  });
+});
+
+$(document).ready(function() {
+  var _this = this;
   return $("#header").bind('mouseenter', function(event, ui) {
     $(".header_menu").show();
     return $("#header").append($(".header_menu"));

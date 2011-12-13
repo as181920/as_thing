@@ -4,6 +4,13 @@ $(document).ready ->
       #$("#sub_header_right").append "lalala"
 
 $(document).ready ->
+  $(".numero")
+    .bind 'mouseenter', (event,ui) =>
+      console.log event.currentTarget.lastElementChild.style.display = "block"
+    .bind 'mouseleave', (event,ui) =>
+      console.log event.currentTarget.lastElementChild.style.display = "none"
+
+$(document).ready ->
   $("#header")
     .bind 'mouseenter', (event,ui) =>
       $(".header_menu").show()
