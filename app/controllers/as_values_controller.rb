@@ -10,7 +10,7 @@ class AsValuesController < ApplicationController
     @labels = @as_note.get_visible_labels(@as_note)
     #TODO ..when label is nil, optimize the handle method, consider use self_defined validation method
     unless @as_note.as_labels.first
-      redirect_to(@as_note, :notice =>'Should add labels first.')
+      redirect_to(as_note_as_labels_path(@as_note), :notice =>'Should add columns first.')
       return
     else
       @sort = AsValue.get_sort_label_id(@as_note,params[:sort])
