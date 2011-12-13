@@ -16,11 +16,10 @@ $(document).ready ->
 
 #move all menu and redirection link to header
 $(document).ready ->
-  $("#sub_header_left")
+  $("#header")
     .bind 'mouseenter', (event,ui) =>
       $(".header_menu").show()
       $("#header").append $(".header_menu")
-  $("#header")
     .bind 'mouseleave', (event,ui) =>
       $(".header_menu").hide()
 

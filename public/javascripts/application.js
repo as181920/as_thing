@@ -19,11 +19,10 @@ $(document).ready(function() {
 
 $(document).ready(function() {
   var _this = this;
-  $("#sub_header_left").bind('mouseenter', function(event, ui) {
+  return $("#header").bind('mouseenter', function(event, ui) {
     $(".header_menu").show();
     return $("#header").append($(".header_menu"));
-  });
-  return $("#header").bind('mouseleave', function(event, ui) {
+  }).bind('mouseleave', function(event, ui) {
     return $(".header_menu").hide();
   });
 });
