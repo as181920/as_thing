@@ -1,7 +1,11 @@
 
 $(document).ready(function() {
   var _this = this;
-  return $("#sub_header_right").bind('mouseenter', function(event, ui) {});
+  return $("#sub_header_right").bind('mouseenter', function(event, ui) {
+    return $(".usermenu").show();
+  }).bind('mouseleave', function(event, ui) {
+    return $(".usermenu").hide();
+  });
 });
 
 $(document).ready(function() {
@@ -15,10 +19,11 @@ $(document).ready(function() {
 
 $(document).ready(function() {
   var _this = this;
-  return $("#header").bind('mouseenter', function(event, ui) {
+  $("#sub_header_left").bind('mouseenter', function(event, ui) {
     $(".header_menu").show();
     return $("#header").append($(".header_menu"));
-  }).bind('mouseleave', function(event, ui) {
+  });
+  return $("#header").bind('mouseleave', function(event, ui) {
     return $(".header_menu").hide();
   });
 });

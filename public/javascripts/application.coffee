@@ -1,8 +1,12 @@
+#user_menu show/hide kindly
 $(document).ready ->
   $("#sub_header_right")
     .bind 'mouseenter', (event,ui) =>
-      #$("#sub_header_right").append "lalala"
+      $(".usermenu").show()
+    .bind 'mouseleave', (event,ui) =>
+      $(".usermenu").hide()
 
+#nav_menu show/hide kindly
 $(document).ready ->
   $(".numero")
     .bind 'mouseenter', (event,ui) =>
@@ -10,14 +14,17 @@ $(document).ready ->
     .bind 'mouseleave', (event,ui) =>
       console.log event.currentTarget.lastElementChild.style.display = "none"
 
+#move all menu and redirection link to header
 $(document).ready ->
-  $("#header")
+  $("#sub_header_left")
     .bind 'mouseenter', (event,ui) =>
       $(".header_menu").show()
       $("#header").append $(".header_menu")
+  $("#header")
     .bind 'mouseleave', (event,ui) =>
       $(".header_menu").hide()
 
+#handle sort on notes list page
 $(document).ready ->
   $("#as_notes")
     .sortable()
@@ -31,6 +38,7 @@ $(document).ready ->
         error: ->
           $("#header").append "ajax error!"
 
+#handle sort on labels list page
 $(document).ready ->
   $("#as_labels")
     .sortable()
@@ -46,6 +54,7 @@ $(document).ready ->
         error: (jqXHR, textStatus, errorThrown) ->
           $("#header").append "ajax error!"
 
+#handle sort on one note info page which sort this note among all user's notes
 $(document).ready ->
   $("#s_position")
     .bind 'change', (event, ui) =>

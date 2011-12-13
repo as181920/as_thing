@@ -31,15 +31,12 @@ body {
 }
 #sub_header_right {
   float: right;
-	color: blue;
+	/*color: blue;*/
 	text-align: right;
 	font-weight: bold;
 	font-size: 12px;
 	padding-right: 8px;
   padding-top: 6px;
-}
-#sub_header_right a {
-  color: black;
 }
 .header_menu {
   display: none;
@@ -108,6 +105,16 @@ body {
   list-style-type:circle
 }
 */
+.usermenu {
+  /*float: left;*/
+  display: none;
+	color: blue;
+	font-size: 12px;
+}
+.usermenu a {
+	color: blue;
+	font-weight: normal;
+}
 .navmenu {
   /*float: left;*/
   display: none;

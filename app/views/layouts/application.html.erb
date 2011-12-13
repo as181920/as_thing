@@ -25,8 +25,10 @@
 
       <div id="sub_header_right">
         <% if current_user %>
-          <%= current_user.email %> |
-          <%= link_to "Log out", log_out_path %>
+          <%= current_user.email %> <BR/>
+          <div class="usermenu">
+            <%= link_to "Log out", log_out_path %>
+          </div>
         <% else %>
           <%= link_to "Log in", log_in_path %> or 
           <%= link_to "Sign up", sign_up_path %>
@@ -51,7 +53,7 @@
     </div>
 
     <div id="footer">
-      <p>Created by <strong>Andersen_Fan</strong> |Any question please mail to:<strong>as181920@hotmail.com</strong></p>
+      <p>Any question please mail to:<strong>as181920@hotmail.com</strong></p>
     </div>
 
   </div>
