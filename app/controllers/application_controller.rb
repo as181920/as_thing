@@ -3,11 +3,21 @@ class ApplicationController < ActionController::Base
   uses_tiny_mce
 
   helper_method :current_user
+  helper_method :user_display_name
   #helper_method :require_login
 
   private
   def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
+  end
+
+  def user_display_name
+    u = current_user
+    if u.nick_name then
+      u.nick_name
+    else
+      u.email
+    end
   end
 
   def require_login

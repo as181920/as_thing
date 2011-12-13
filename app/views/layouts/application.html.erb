@@ -25,8 +25,9 @@
 
       <div id="sub_header_right">
         <% if current_user %>
-          <%= current_user.email %> <BR/>
+          <%= user_display_name %> <BR/>
           <div class="usermenu">
+            <%= link_to "Setting", edit_user_path(current_user) %> <BR/>
             <%= link_to "Log out", log_out_path %>
           </div>
         <% else %>

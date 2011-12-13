@@ -110,6 +110,7 @@ body {
   display: none;
 	color: blue;
 	font-size: 12px;
+	padding-top: 2px;
 }
 .usermenu a {
 	color: blue;

@@ -3,6 +3,23 @@ class UsersController < ApplicationController
     @users = User.all
   end
 
+  def edit
+    @user = current_user
+  end
+
+  def update
+    @user = current_user
+    user = User.authenticate(@user.email,params[:old][:password])
+    if user
+      #session[:user_id] = user.id
+      @user.update_attributes(params[:user])
+      redirect_to as_notes_path, :notice => "user setting updated!"
+    else
+      flash.now.alert = "wrong password"
+      render "edit"
+    end
+  end
+
   def all
     @page_number = params[:page] || 1
     @search = params[:search]
