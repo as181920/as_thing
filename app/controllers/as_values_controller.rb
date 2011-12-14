@@ -71,8 +71,6 @@ class AsValuesController < ApplicationController
   # GET /as_values/new.xml
   def new
     @as_note = AsNote.find(params[:as_note_id])
-    #TODO: modify get_sorted_labels method
-    #@labels = @as_note.as_labels
     @labels = @as_note.get_sorted_labels(@as_note)
 
     respond_to do |format|
@@ -97,12 +95,14 @@ class AsValuesController < ApplicationController
   # POST /as_values.xml
   def create
     @as_note = AsNote.find(params[:as_note_id])
-    values = params[:content]
-    if AsValue.save_entire_record(values) then
+    @values = params[:content]
+    if AsValue.save_entire_record(@values) then
       redirect_to as_note_as_values_url(@as_note)
     else
-      #TODO: keep inputed values after check validation and redirect
-      redirect_to(new_as_note_as_value_path(@as_note), :notice => 'some data not valid,please check again!')
+      #TODO: keep inputed @values after check validation and redirect
+      #redirect_to(new_as_note_as_value_path(@as_note), :notice => 'some data not valid,please check again!')
+      #redirect_to :back, :notice => 'some data not valid,please check again!'
+      render(:text => "some data not valid,please back to last page and check again!")
     end
   end
 
@@ -126,12 +126,13 @@ end
     @search = params[:search]
     @label = params[:label]
     @page = params[:page]
-    values = params[:content]
-    if AsValue.update_entire_record(@numero,values) then
+    @values = params[:content]
+    if AsValue.update_entire_record(@numero,@values) then
       redirect_to(:action=>:index,:sort=>@sort,:direction=>@direction,:search=>@search,:label=>@label,:page=>@page)
     else
       #TODO: add some error notice information
-      redirect_to(:action=>:edit, :sort=>@sort,:direction=>@direction,:search=>@search,:label=>@label,:page=>@page)
+      #redirect_to(:action=>:edit, :sort=>@sort,:direction=>@direction,:search=>@search,:label=>@label,:page=>@page)
+      render(:text => "some data not valid,please back to last page and check again!")
     end
 
   end

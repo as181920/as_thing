@@ -107,7 +107,7 @@ class AsValue < ActiveRecord::Base
     #validation: check record label releated format/requirement and so on
     values.each do |value|
       if AsLabel.find(value[0]).label_format == "Numeric" then
-        unless value[1].to_f.to_s == value[1] or value[1].to_i.to_s == value[1] or value[1] == "" then
+        unless (value[1].to_f.to_s == value[1] or value[1].to_i.to_s == value[1] or value[1] == "") then
           return false
         end
       end
