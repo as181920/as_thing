@@ -1,5 +1,10 @@
 class AsValue < ActiveRecord::Base
   belongs_to :as_label
+  #validates_with FormatValidator
+  #class FormatValidator
+  #end
+  #validates :value, :numericality => true, :if => Proc.new { |r| r.as_label.label_format == "Numeric" }
+  #validates :value, :presence => true, :if => Proc.new { |r| r.as_label.is_required == true }
 
   def self.get_sort_label_id(as_note,p_sort)
     default_sort = as_note.as_labels.where("default_sort is ?",true).first
@@ -98,7 +103,24 @@ class AsValue < ActiveRecord::Base
     return @l_values_page, @records_count
   end
 
+  def self.label_format_validation(values)
+    #validation: check record label releated format/requirement and so on
+    values.each do |value|
+      if AsLabel.find(value[0]).label_format == "Numeric" then
+        unless value[1].to_f.to_s == value[1] or value[1].to_i.to_s == value[1] or value[1] == "" then
+          return false
+        end
+      end
+
+      if AsLabel.find(value[0]).is_required == true then
+        return false if value[1] == ""
+      end
+    end
+  end
+
   def self.save_entire_record(values)
+    return false unless label_format_validation(values)
+
     last_value = AsValue.first(:select=>:numero,:order=>"numero DESC")
     if last_value then
       numero = last_value.numero + 1
@@ -127,6 +149,8 @@ class AsValue < ActiveRecord::Base
   end
 
   def self.update_entire_record(numero,values)
+    return false unless label_format_validation(values)
+
     AsValue.transaction do
       values.each do |value|
         @as_value = AsValue.first(:conditions=>["numero=? and as_label_id=?",numero,value[0]])

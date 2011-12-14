@@ -98,11 +98,11 @@ class AsValuesController < ApplicationController
   def create
     @as_note = AsNote.find(params[:as_note_id])
     values = params[:content]
-    AsValue.save_entire_record(values)
-
-    respond_to do |format|
-      format.html { redirect_to as_note_as_values_url(@as_note) }
-      #format.xml  { render :xml => @as_value, :status => :created, :location => @as_value }
+    if AsValue.save_entire_record(values) then
+      redirect_to as_note_as_values_url(@as_note)
+    else
+      #TODO: keep inputed values after check validation and redirect
+      redirect_to(new_as_note_as_value_path(@as_note), :notice => 'some data not valid,please check again!')
     end
   end
 
@@ -127,14 +127,13 @@ end
     @label = params[:label]
     @page = params[:page]
     values = params[:content]
-    AsValue.update_entire_record(@numero,values)
-
-    respond_to do |format|
-      format.html { redirect_to(:action=>:index,:sort=>@sort,:direction=>@direction,:search=>@search,:label=>@label,:page=>@page) }
-      #format.html { redirect_to as_note_as_values_url(@as_note) }
-      #format.html { redirect_to as_note_as_value_url(@as_note,@numero) }
-      #format.xml  { render :xml => @as_value, :status => :created, :location => @as_value }
+    if AsValue.update_entire_record(@numero,values) then
+      redirect_to(:action=>:index,:sort=>@sort,:direction=>@direction,:search=>@search,:label=>@label,:page=>@page)
+    else
+      #TODO: add some error notice information
+      redirect_to(:action=>:edit, :sort=>@sort,:direction=>@direction,:search=>@search,:label=>@label,:page=>@page)
     end
+
   end
 
   # DELETE /as_values/1

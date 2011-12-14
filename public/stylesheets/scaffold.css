@@ -63,6 +63,9 @@ body {
   /*float: left;*/
   text-align: center;
 }
+#signup {
+  text-align: center;
+}
 #notes_list {
   float: center;
   text-align: center;
