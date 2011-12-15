@@ -1,9 +1,19 @@
+<div class="header_menu">
+  <%= link_to 'My Notes', as_notes_path, :class=>"menu_link" %> &nbsp;
+  <%= link_to 'Public notes', "public", :class=>"menu_link" %> &nbsp;
+  <%= link_to 'Followed users', all_users_path, :class=>"menu_link" %> &nbsp;
+  <%= link_to 'All users', all_users_path, :class=>"menu_link" %>
+</div>
 
-<ul id="users">
-<% @users.each do |user| %>
-  <%= content_tag_for :li, user do %>
-    <%= link_to user.email, user_path(user) %><br />
-  <% end %>
-<% end %>
-</ul>
+<div id="users_list">
+  <div id="users_main">
+    <ul>
+    <% @users.each do |user| %>
+      <%= content_tag_for :li, user do %>
+        <%= link_to user.email, user_path(user) %><br />
+      <% end %>
+    <% end %>
+    </ul>
+  </div>
+</div>
 

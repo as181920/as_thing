@@ -1,6 +1,8 @@
 AsThing::Application.routes.draw do
 
-  resources :friendships
+  resources :relationships
+
+  resources :followships
 
   get "sessions/new"
 
@@ -29,6 +31,7 @@ AsThing::Application.routes.draw do
   resources :users do
     collection do
       get :all
+      get :followed
     end
   end
   resources :sessions

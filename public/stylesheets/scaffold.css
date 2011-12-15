@@ -66,6 +66,13 @@ body {
 #signup {
   text-align: center;
 }
+#users_list {
+  float: center;
+  text-align: center;
+  padding: 0 30px 0 30px;
+  font-size: 26px;
+  line-height: 40px;
+}
 #notes_list {
   float: center;
   text-align: center;
@@ -118,6 +125,11 @@ body {
 .usermenu a {
 	color: blue;
 	font-weight: normal;
+}
+.followmenu {
+  display: inline;
+	color: blue;
+	font-size: 12px;
 }
 .navmenu {
   /*float: left;*/
