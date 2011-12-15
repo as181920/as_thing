@@ -1,0 +1,2 @@
+class OwnerShipsController < ApplicationController
+end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111201024429) do
+ActiveRecord::Schema.define(:version => 20111215163057) do
 
   create_table "as_labels", :force => true do |t|
     t.string   "name"
@@ -43,6 +43,14 @@ ActiveRecord::Schema.define(:version => 20111201024429) do
     t.integer  "as_label_id"
   end
 
+  create_table "followships", :force => true do |t|
+    t.integer  "followed_id"
+    t.integer  "follower_id"
+    t.integer  "position"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "friendships", :force => true do |t|
     t.integer  "user_id"
     t.integer  "friend_id"
@@ -53,6 +61,14 @@ ActiveRecord::Schema.define(:version => 20111201024429) do
   create_table "ownerships", :force => true do |t|
     t.integer  "as_note_id"
     t.integer  "user_id"
+    t.integer  "position"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "relationships", :force => true do |t|
+    t.integer  "fd_note_id"
+    t.integer  "follower_id"
     t.integer  "position"
     t.datetime "created_at"
     t.datetime "updated_at"

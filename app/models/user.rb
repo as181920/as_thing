@@ -1,6 +1,12 @@
 class User < ActiveRecord::Base
-  has_many :friendships
-  has_many :friends, :through => :friendships
+  has_many :followships, :foreign_key => "follower_id"
+  has_many :following, :through => :followships, :source => :followed
+  has_many :reverse_followships, :foreign_key => "followed_id", :class_name => "Followship"
+  has_many :followers, :through => :reverse_followships, :source => :follower
+
+  has_many :relationships, :foreign_key => "follower_id"
+  has_many :fd_notes, :through => :relationships, :source => :fd_note
+
   has_many :ownerships
   has_many :as_notes, :through => :ownerships
 

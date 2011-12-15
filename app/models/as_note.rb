@@ -1,9 +1,13 @@
 class AsNote < ActiveRecord::Base
   #acts_as_list :scope => :ownership
-  has_many :as_labels, :dependent => :destroy
-  has_many :as_values, :through => :as_labels
+  has_many :relationships, :foreign_key => "fd_note_id"
+  has_many :followers, :through => :relationships, :source => :follower
+
   has_many :ownerships
   has_many :owners, :through => :ownerships, :source => :user
+
+  has_many :as_labels, :dependent => :destroy
+  has_many :as_values, :through => :as_labels
 
   validates_presence_of :name
   validates_length_of :name, :maximum => 50

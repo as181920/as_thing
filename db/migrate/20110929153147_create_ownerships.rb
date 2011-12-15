@@ -4,7 +4,6 @@ class CreateOwnerships < ActiveRecord::Migration
       t.integer :as_note_id
       t.integer :user_id
       t.integer :position
-      t.datetime :created_at
 
       t.timestamps
     end
