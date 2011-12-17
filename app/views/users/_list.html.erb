@@ -1,0 +1,34 @@
+<div class="list_head">
+  Total:  <%= @total %> users
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <%= paginate @users %>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+  <%= form_tag all_users_path, :method=>"get" do %>
+    <%= select_tag(:user_attr,options_for_select(@select_array,@selected)) %>
+    <%= text_field_tag(:search, @search,:size=>"15") %>
+    <%= submit_tag "Search", :name=>nil %>
+  <% end %>
+</div>
+
+<div id="users_main">
+  <ul>
+  <% @users.each do |user| %>
+    <%= content_tag_for :li, user do %>
+      <div class="user_item">
+        <%= link_to user.email, user_path(user) %> 
+      </div>
+
+      <div class="follow_form">
+        <% if current_user.following?(user)%>
+          <%= render :partial=>"unfollow", :locals=>{:user=>user} %>
+        <% else %>
+          <%= render :partial=>"follow", :locals=>{:user=>user} %>
+        <% end %>
+      </div>
+      <br />
+    <% end %>
+  <% end %>
+  </ul>
+</div>
+

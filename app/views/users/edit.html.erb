@@ -2,29 +2,31 @@
   <%= link_to 'Cancel', root_url %> &nbsp;
 </div>
 
-<b>Set_User_Information</b>
-<BR/>
-<BR/>
+<div id="user_setting">
+  <b>Set_User_Information</b>
+  <BR/>
+  <BR/>
 
-<p> <strong>Email: </strong> <%= @user.email %> </p>
+  <p> <strong>Email: </strong> <%= @user.email %> </p>
 
-<%= form_for @user do |f| %>
-	<p>
-	  old_password: 
-	  <%= password_field "old", :password %>
-	</p>
-	<p>
-	  <%= f.label :nick_name %><br />
-	  <%= f.text_field :nick_name %>
-	</p>
-	<p>
-	  <%= f.label :new_password %><br />
-	  <%= f.password_field :password %>
-	</p>
-	<p>
-	  <%= f.label :new_password_confirmation %><br />
-	  <%= f.password_field :password_confirmation %>
-	</p>
-	<p class="button"><%= f.submit("update") %></p>
-<% end %>
+  <%= form_for @user do |f| %>
+    <p>
+      old_password: 
+      <%= password_field "old", :password %>
+    </p>
+    <p>
+      <%= f.label :nick_name %>:
+      <%= f.text_field :nick_name %>
+    </p>
+    <p>
+      <%= f.label :new_password %>:
+      <%= f.password_field :password %>
+    </p>
+    <p>
+      <%= f.label :new_password_confirmation %>:
+      <%= f.password_field :password_confirmation %>
+    </p>
+    <p class="button"><%= f.submit("update") %></p>
+  <% end %>
+</div>
 

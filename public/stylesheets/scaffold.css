@@ -66,6 +66,10 @@ body {
 #signup {
   text-align: center;
 }
+#user_setting {
+  float: center;
+  text-align: right;
+}
 #users_list {
   float: center;
   text-align: center;
@@ -126,7 +130,11 @@ body {
 	color: blue;
 	font-weight: normal;
 }
-.followmenu {
+.user_item {
+  display: inline;
+}
+.follow_form {
+  float: right;
   display: inline;
 	color: blue;
 	font-size: 12px;

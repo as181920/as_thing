@@ -1,9 +1,5 @@
 AsThing::Application.routes.draw do
 
-  resources :relationships
-
-  resources :followships
-
   get "sessions/new"
 
   #post 'as_notes/:as_note_id/as_values/:numero' => 'as_values#update'
@@ -31,10 +27,14 @@ AsThing::Application.routes.draw do
   resources :users do
     collection do
       get :all
-      get :followed
+      get :following
+      get :followers
     end
   end
-  resources :sessions
+  resources :followships, :only => [:create, :destroy]
+  resources :relationships, :only => [:create, :destroy]
+
+  resources :sessions, :only => [:new, :create, :destroy]
 
   #root :to => 'as_notes#index'
   root :to => "sessions#new"

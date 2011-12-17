@@ -30,6 +30,18 @@ class User < ActiveRecord::Base
     end
   end
 
+  def following?(followed)
+    followships.find_by_followed_id(followed)
+  end
+
+  def follow!(followed)
+    followships.create!(:followed_id => followed.id)
+  end
+
+  def unfollow!(followed)
+    followships.find_by_followed_id(followed).destroy
+  end
+
   def encrypt_password
     if password.present?
       self.password_salt = BCrypt::Engine.generate_salt

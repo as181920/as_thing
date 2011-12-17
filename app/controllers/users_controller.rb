@@ -20,6 +20,28 @@ class UsersController < ApplicationController
     end
   end
 
+  def followers
+    @page_number = params[:page] || 1
+    @search = params[:search]
+    @search_like = "%"+@search.to_s+"%"
+    @select_array = ["id","nick_name","email"]
+    @selected = params[:user_attr] || "id"
+
+    @users = current_user.followers.where("users.? like ?",@selected,@search_like).order("updated_at desc").page(@page_number).per(15)
+    @total = current_user.followers.where("users.? like ?",@selected,@search_like).order("updated_at desc").count
+  end
+
+  def following
+    @page_number = params[:page] || 1
+    @search = params[:search]
+    @search_like = "%"+@search.to_s+"%"
+    @select_array = ["id","nick_name","email"]
+    @selected = params[:user_attr] || "id"
+
+    @users = current_user.following.where("users.? like ?",@selected,@search_like).order("updated_at desc").page(@page_number).per(15)
+    @total = current_user.following.where("users.? like ?",@selected,@search_like).order("updated_at desc").count
+  end
+
   def all
     @page_number = params[:page] || 1
     @search = params[:search]
