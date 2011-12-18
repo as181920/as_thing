@@ -30,6 +30,19 @@ class User < ActiveRecord::Base
     end
   end
 
+  def note_following?(followed)
+    relationships.find_by_fd_note_id(followed)
+  end
+
+  def note_follow!(followed)
+    relationships.create!(:fd_note_id => followed.id)
+  end
+
+  def note_unfollow!(followed)
+    relationships.find_by_fd_note_id(followed).destroy
+  end
+
+
   def following?(followed)
     followships.find_by_followed_id(followed)
   end

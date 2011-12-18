@@ -7,6 +7,8 @@ AsThing::Application.routes.draw do
   resources :as_notes do
     collection do
       post :sort
+      get :following
+      get :public
     end
     member do
       post :sort_all
@@ -22,7 +24,6 @@ AsThing::Application.routes.draw do
   get "log_in" => "sessions#new", :as => "log_in"
   get "log_out" => "sessions#destroy", :as => "log_out"
   get "sign_up" => "users#new", :as => "sign_up"
-  get "public" => "AsNotes#public", :as => "public"
 
   resources :users do
     collection do

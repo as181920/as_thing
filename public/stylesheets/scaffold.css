@@ -133,6 +133,9 @@ body {
 .user_item {
   display: inline;
 }
+.note_item {
+  display: inline;
+}
 .follow_form {
   float: right;
   display: inline;

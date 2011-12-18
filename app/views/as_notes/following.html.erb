@@ -1,6 +1,6 @@
 <div class="header_menu">
     <%= link_to 'View my notes', as_notes_path, :class=>"menu_link" %> &nbsp;
-    <%= link_to 'View following notes', following_as_notes_path, :class=>"menu_link" %> &nbsp;
+    <%= link_to 'View public notes', all_users_path, :class=>"menu_link" %> &nbsp;
     <%= link_to 'View all users', all_users_path, :class=>"menu_link" %>
 </div>
 
@@ -26,12 +26,10 @@
       </div>
 
       <div class="follow_form">
-        <% if current_user %>
-          <% if current_user.note_following?(as_note)%>
-            <%= render :partial=>"unfollow", :locals=>{:as_note=>as_note} %>
-          <% else %>
-            <%= render :partial=>"follow", :locals=>{:as_note=>as_note} %>
-          <% end %>
+        <% if current_user.note_following?(as_note)%>
+          <%= render :partial=>"unfollow", :locals=>{:as_note=>as_note} %>
+        <% else %>
+          <%= render :partial=>"follow", :locals=>{:as_note=>as_note} %>
         <% end %>
       </div>
       <br />
