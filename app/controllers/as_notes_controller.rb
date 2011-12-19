@@ -85,7 +85,7 @@ class AsNotesController < ApplicationController
   # GET /as_notes/1.xml
   def show
     @as_note = AsNote.find(params[:id])
-    @position = @as_note.ownerships.where("user_id = ?",current_user).first.position
+    #@position = @as_note.ownerships.where("user_id = ?",current_user).first.position
 
     respond_to do |format|
       format.html # show.html.erb
