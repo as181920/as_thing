@@ -27,9 +27,9 @@
 
       <div class="follow_form">
         <% if current_user.note_following?(as_note)%>
-          <%= render :partial=>"unfollow", :locals=>{:as_note=>as_note} %>
+          <%= render :partial=>"note_unfollow", :locals=>{:as_note=>as_note} %>
         <% else %>
-          <%= render :partial=>"follow", :locals=>{:as_note=>as_note} %>
+          <%= render :partial=>"note_follow", :locals=>{:as_note=>as_note} %>
         <% end %>
       </div>
       <br />
