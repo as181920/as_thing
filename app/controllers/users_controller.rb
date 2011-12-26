@@ -1,6 +1,11 @@
 class UsersController < ApplicationController
   def index
+    @user = current_user
     @users = User.all
+  end
+
+  def show
+    @user = User.find(params[:id])
   end
 
   def edit
@@ -26,9 +31,10 @@ class UsersController < ApplicationController
     @search_like = "%"+@search.to_s+"%"
     @select_array = ["id","nick_name","email"]
     @selected = params[:user_attr] || "id"
+    @user = User.find(params[:id]) || current_user
 
-    @users = current_user.followers.where("users.? like ?",@selected,@search_like).order("updated_at desc").page(@page_number).per(15)
-    @total = current_user.followers.where("users.? like ?",@selected,@search_like).order("updated_at desc").count
+    @users = @user.followers.where("users.? like ?",@selected,@search_like).order("updated_at desc").page(@page_number).per(15)
+    @total = @user.followers.where("users.? like ?",@selected,@search_like).order("updated_at desc").count
   end
 
   def following
@@ -37,9 +43,28 @@ class UsersController < ApplicationController
     @search_like = "%"+@search.to_s+"%"
     @select_array = ["id","nick_name","email"]
     @selected = params[:user_attr] || "id"
+    @user = User.find(params[:id]) || current_user
 
-    @users = current_user.following.where("users.? like ?",@selected,@search_like).order("updated_at desc").page(@page_number).per(15)
-    @total = current_user.following.where("users.? like ?",@selected,@search_like).order("updated_at desc").count
+    @users = @user.following.where("users.? like ?",@selected,@search_like).order("updated_at desc").page(@page_number).per(15)
+    @total = @user.following.where("users.? like ?",@selected,@search_like).order("updated_at desc").count
+  end
+
+  def notes_following
+    @page_number = params[:page] || 1
+    @labels_select = ["id","name","comment"]
+    @label_selected = params[:label] || "id"
+    @search = params[:search]
+    @search_like = "%"+@search.to_s+"%"
+    @as_notes = AsNote
+    @user = User.find(params[:id]) || current_user
+
+    @as_notes = @user.fd_notes.where("as_notes.? like ?",@label_selected,@search_like).page(@page_number).per(15)
+    @total = @user.fd_notes.where("as_notes.? like ?",@label_selected,@search_like).count
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.xml  { render :xml => @as_notes }
+    end
   end
 
   def all
@@ -48,6 +73,7 @@ class UsersController < ApplicationController
     @search_like = "%"+@search.to_s+"%"
     @select_array = ["id","nick_name","email"]
     @selected = params[:user_attr] || "id"
+    @user = current_user
 
     @users = User.where("users.? like ?",@selected,@search_like).order("updated_at desc").page(@page_number).per(15)
     @total = User.where("users.? like ?",@selected,@search_like).order("updated_at desc").count

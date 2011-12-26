@@ -7,11 +7,12 @@ AsThing::Application.routes.draw do
   resources :as_notes do
     collection do
       post :sort
-      get :following
       get :public
     end
     member do
       post :sort_all
+      get :followers
+      get :owners
     end
     resources :as_labels do
       collection do
@@ -28,6 +29,9 @@ AsThing::Application.routes.draw do
   resources :users do
     collection do
       get :all
+    end
+    member do
+      get :notes_following
       get :following
       get :followers
     end

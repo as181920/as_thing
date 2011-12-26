@@ -1,0 +1,15 @@
+<div class="header_menu">
+  <%= link_to 'home', root_url %> &nbsp;
+</div>
+
+<div id="user_show">
+  <b>User_Information</b>
+  <BR/>
+  <BR/>
+
+  <p> <strong>Email: </strong> <%= @user.email %> </p>
+  <p> <strong>Nick_name: </strong> <%= @user.nick_name %> </p>
+  <p> <strong>Followed_by: </strong> <%= link_to @user.followers.length, followers_user_path(@user) %> user(s)</p>
+  <p> <strong>Following: </strong> <%= link_to @user.following.length, following_user_path(@user) %> user(s)</p>
+</div>
+

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111219142725) do
+ActiveRecord::Schema.define(:version => 20111226082039) do
 
   create_table "as_labels", :force => true do |t|
     t.string   "name"
@@ -71,6 +71,8 @@ ActiveRecord::Schema.define(:version => 20111219142725) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "message_text"
+    t.string   "current_status"
   end
 
   create_table "relationships", :force => true do |t|

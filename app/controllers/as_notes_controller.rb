@@ -10,9 +10,10 @@ class AsNotesController < ApplicationController
     @label_selected = params[:label] || "id"
     @search = params[:search]
     @search_like = "%"+@search.to_s+"%"
+    @user = current_user
 
-    @as_notes = current_user.as_notes.where("as_notes.? like ?",@label_selected,@search_like).order("ownerships.position").page(@page_number).per(15)
-    @total = current_user.as_notes.where("as_notes.? like ?",@label_selected,@search_like).count
+    @as_notes = @user.as_notes.where("as_notes.? like ?",@label_selected,@search_like).order("ownerships.position").page(@page_number).per(15)
+    @total = @user.as_notes.where("as_notes.? like ?",@label_selected,@search_like).count
 
     respond_to do |format|
       format.html # index.html.erb
@@ -49,22 +50,6 @@ class AsNotesController < ApplicationController
     end
   end
 
-  def following
-    @page_number = params[:page] || 1
-    @labels_select = ["id","name","comment"]
-    @label_selected = params[:label] || "id"
-    @search = params[:search]
-    @search_like = "%"+@search.to_s+"%"
-    @as_notes = AsNote
-    @as_notes = current_user.fd_notes.where("as_notes.? like ?",@label_selected,@search_like).page(@page_number).per(15)
-    @total = current_user.fd_notes.where("as_notes.? like ?",@label_selected,@search_like).count
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @as_notes }
-    end
-  end
-
   def public
     #@as_notes = AsNote.public_notes
     @page_number = params[:page] || 1
@@ -79,6 +64,16 @@ class AsNotesController < ApplicationController
       format.html # index.html.erb
       format.xml  { render :xml => @as_notes }
     end
+  end
+
+  def owners
+    @as_note = AsNote.find(params[:id])
+    @users = @as_note.owners
+  end
+
+  def followers
+    @as_note = AsNote.find(params[:id])
+    @users = @as_note.followers
   end
 
   # GET /as_notes/1
