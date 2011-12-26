@@ -1,0 +1,3 @@
+<%= form_for current_user.relationships.find_by_fd_note_id(as_note.id), :html => { :method => :delete } do |f| %>
+  <div class="actions"><%= f.submit "Unfollow" %></div>
+<% end %>

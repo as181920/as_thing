@@ -1,0 +1,5 @@
+<%= form_for current_user.relationships.build(:fd_note_id => as_note.id) do |f| %>
+  <div><%= f.hidden_field :fd_note_id %></div>
+  <div class="actions"><%= f.submit "Follow" %></div>
+<% end %>
+

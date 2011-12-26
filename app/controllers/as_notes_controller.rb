@@ -51,6 +51,7 @@ class AsNotesController < ApplicationController
   end
 
   def public
+    @user = current_user
     #@as_notes = AsNote.public_notes
     @page_number = params[:page] || 1
     @labels_select = ["id","name","comment"]
@@ -62,7 +63,6 @@ class AsNotesController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @as_notes }
     end
   end
 
