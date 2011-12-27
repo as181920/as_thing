@@ -6,6 +6,9 @@ class AsNote < ActiveRecord::Base
   has_many :ownerships
   has_many :owners, :through => :ownerships, :source => :user
 
+  has_many :permission_requests, :dependent => :destroy
+  has_many :appliers, :through => :permission_requests, :source=>:user, :foreign_key => "user_id"
+
   has_many :as_labels, :dependent => :destroy
   has_many :as_values, :through => :as_labels
 

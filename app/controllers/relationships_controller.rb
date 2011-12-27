@@ -4,7 +4,8 @@ class RelationshipsController < ApplicationController
     current_user.note_follow!(@as_note)
 
     respond_to do |format|
-      format.html { redirect_to public_as_notes_path }
+      #format.html { redirect_to public_as_notes_path }
+      format.html { redirect_to :back }
       format.js
     end
   end
@@ -14,7 +15,7 @@ class RelationshipsController < ApplicationController
     current_user.note_unfollow!(@as_note)
 
     respond_to do |format|
-      format.html { redirect_to public_as_notes_path }
+      format.html { redirect_to :back }
       format.js
     end
   end

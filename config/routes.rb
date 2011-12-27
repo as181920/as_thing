@@ -13,6 +13,7 @@ AsThing::Application.routes.draw do
       post :sort_all
       get :followers
       get :owners
+      get :appliers
     end
     resources :as_labels do
       collection do
@@ -20,6 +21,7 @@ AsThing::Application.routes.draw do
       end
     end
     resources :as_values
+    resources :permission_requests
   end
 
   get "log_in" => "sessions#new", :as => "log_in"
@@ -38,6 +40,7 @@ AsThing::Application.routes.draw do
   end
   resources :followships, :only => [:create, :destroy]
   resources :relationships, :only => [:create, :destroy]
+  resources :ownerships, :only => [:destroy]
 
   resources :sessions, :only => [:new, :create, :destroy]
 

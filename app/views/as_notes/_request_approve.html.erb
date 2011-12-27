@@ -1,0 +1,5 @@
+<%= form_for [as_note,req] do |f| %>
+  <div><%= f.hidden_field :user_id %></div>
+  <div class="actions"><%= f.submit "Approve" %></div>
+<% end %>
+

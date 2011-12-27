@@ -1,0 +1,18 @@
+<div>
+  <ul>
+  <% @appliers.each do |user| %>
+    <%= content_tag_for :li, user do %>
+      <div class="user_item">
+        <%= link_to user.email, user_path(user) %> 
+      </div>
+      <div class="note_approve_form">
+        <% if current_user %>
+          <%= render :partial=>"request_approve", :locals=>{:as_note=>@as_note,:user=>user,:req=>PermissionRequest.where("as_note_id = ? and user_id = ?",@as_note,user).first} %>
+        <% end %>
+      </div>
+      <br />
+    <% end %>
+  <% end %>
+  </ul>
+</div>
+

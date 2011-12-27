@@ -142,6 +142,17 @@ body {
 	color: blue;
 	font-size: 12px;
 }
+.note_follow_form {
+  display: inline;
+}
+.permission_req_form a {
+	color: blue;
+	font-size: 12px;
+}
+.note_approve_form {
+  float: right;
+  display: inline;
+}
 .navmenu {
   /*float: left;*/
   display: none;

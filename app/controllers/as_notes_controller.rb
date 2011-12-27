@@ -81,11 +81,17 @@ class AsNotesController < ApplicationController
   def show
     @as_note = AsNote.find(params[:id])
     #@position = @as_note.ownerships.where("user_id = ?",current_user).first.position
+    @appliers = PermissionRequest.where("as_note_id = ? and current_status != ?", @as_note.id, "closed")
 
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @as_note }
     end
+  end
+
+  def appliers
+    @as_note = AsNote.find(params[:id])
+    @appliers = @as_note.appliers.where("current_status != ?", "closed")
   end
 
   # GET /as_notes/new

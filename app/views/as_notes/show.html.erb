@@ -31,11 +31,36 @@
   <%= @as_note.get_updated_date(@as_note) %>
 </p>
 
-<p>
-  <b>Owned_by:</b> <%= link_to @as_note.owners.length, owners_as_note_path(@as_note) %> user(s)
-</p>
+<b>Owned_by:</b>
+<%= link_to @as_note.owners.length, owners_as_note_path(@as_note) %> user(s)
+<div class="permission_req_form">
+  <% if current_user %>
+    <% if @as_note.owners.length == 1 and @as_note.owners.include? current_user %>
+    <% elsif @as_note.owners.length > 1 and @as_note.owners.include? current_user %>
+      <%= render :partial=>"release_owned_note", :locals=>{:ownership=>Ownership.where("as_note_id = ? and user_id = ?",@as_note.id,current_user).first} %>
+    <% elsif PermissionRequest.find_by_user_id(current_user) %>
+      I'm applying to be owner of this note, waitting for approve.
+    <% else %>
+      <%= link_to "Apply to be owner", new_as_note_permission_request_path(@as_note) %>
+    <% end %>
+  <% end %>
+</div>
+<% if @appliers %>
+  applying to be owner: <%= link_to @appliers.count, appliers_as_note_path(@as_note) %> user(s)
+<% else %>
+<% end %>
+<BR/>
+<BR/>
 
-<p>
-  <b>followed_by:</b> <%= link_to @as_note.followers.length, followers_as_note_path(@as_note) %> user(s)
-</p>
+<b>followed_by:</b>
+<%= link_to @as_note.followers.length, followers_as_note_path(@as_note) %> user(s)
+<div class="note_follow_form">
+  <% if current_user %>
+    <% if current_user.note_following?(@as_note)%>
+      <%= render :partial=>"note_unfollow", :locals=>{:as_note=>@as_note} %>
+    <% else %>
+      <%= render :partial=>"note_follow", :locals=>{:as_note=>@as_note} %>
+    <% end %>
+  <% end %>
+</div>
 

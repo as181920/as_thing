@@ -10,6 +10,8 @@ class User < ActiveRecord::Base
   has_many :ownerships
   has_many :as_notes, :through => :ownerships
 
+  has_many :permission_requests, :dependent => :destroy
+
   attr_accessible :nick_name, :email, :password, :password_confirmation
 
   attr_accessor :password
