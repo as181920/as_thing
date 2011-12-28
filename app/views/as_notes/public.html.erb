@@ -1,6 +1,8 @@
 <div class="header_menu">
     <%= link_to 'View my notes', as_notes_path, :class=>"menu_link" %> &nbsp;
-    <%= link_to 'View following notes', notes_following_user_path(@user), :class=>"menu_link" %> &nbsp;
+    <% if @user %>
+      <%= link_to 'View following notes', notes_following_user_path(@user), :class=>"menu_link" %> &nbsp;
+    <% end %>
     <%= link_to 'View all users', all_users_path, :class=>"menu_link" %>
 </div>
 
