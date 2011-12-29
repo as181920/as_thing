@@ -18,9 +18,6 @@
 
       <div id="sub_header_left">
         <%= link_to "Notes", as_notes_path %>
-        <% flash.each do |name,msg| %>
-          <%= content_tag :div, msg, :id=>"flash#{name}" %>
-        <% end %>
       </div>
 
       <div id="sub_header_right">
@@ -33,6 +30,9 @@
         <% else %>
           <%= link_to "Log in", log_in_path %> or 
           <%= link_to "Sign up", sign_up_path %>
+        <% end %>
+        <% flash.each do |name,msg| %>
+          <%= content_tag :div, msg, :id=>"flash#{name}" %>
         <% end %>
       </div>
 
