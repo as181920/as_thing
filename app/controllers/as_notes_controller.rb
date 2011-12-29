@@ -12,8 +12,10 @@ class AsNotesController < ApplicationController
     @search_like = "%"+@search.to_s+"%"
     @user = current_user
 
-    @as_notes = @user.as_notes.where("as_notes.? like ?",@label_selected,@search_like).order("ownerships.position").page(@page_number).per(15)
-    @total = @user.as_notes.where("as_notes.? like ?",@label_selected,@search_like).count
+    #@as_notes = @user.as_notes.where("as_notes.? like ?",@label_selected,@search_like).order("ownerships.position").page(@page_number).per(15)
+    #@total = @user.as_notes.where("as_notes.? like ?",@label_selected,@search_like).count
+    @as_notes = @user.as_notes.where("as_notes.#{@label_selected} like ?",@search_like).order("ownerships.position").page(@page_number).per(15)
+    @total = @user.as_notes.where("as_notes.#{@label_selected} like ?",@search_like).count
 
     respond_to do |format|
       format.html # index.html.erb
