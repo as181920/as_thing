@@ -1,4 +1,5 @@
 source 'http://rubygems.org'
+#source 'http://ruby.taobao.org'
 
 gem 'rails', '3.0.0'
 gem "jquery-rails"
