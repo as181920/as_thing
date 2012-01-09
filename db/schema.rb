@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111226082039) do
+ActiveRecord::Schema.define(:version => 20120109030914) do
 
   create_table "as_labels", :force => true do |t|
     t.string   "name"
@@ -27,6 +27,8 @@ ActiveRecord::Schema.define(:version => 20111226082039) do
     t.boolean  "default_sort",    :default => false
   end
 
+  add_index "as_labels", ["as_note_id"], :name => "index_as_labels_on_as_note_id"
+
   create_table "as_notes", :force => true do |t|
     t.string   "name"
     t.text     "comment"
@@ -35,6 +37,8 @@ ActiveRecord::Schema.define(:version => 20111226082039) do
     t.boolean  "public"
   end
 
+  add_index "as_notes", ["id"], :name => "index_as_notes_on_id"
+
   create_table "as_values", :force => true do |t|
     t.text     "value"
     t.integer  "numero"
@@ -42,6 +46,8 @@ ActiveRecord::Schema.define(:version => 20111226082039) do
     t.datetime "updated_at"
     t.integer  "as_label_id"
   end
+
+  add_index "as_values", ["numero", "as_label_id"], :name => "value_index", :unique => true
 
   create_table "followships", :force => true do |t|
     t.integer  "followed_id"
