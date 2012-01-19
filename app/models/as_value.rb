@@ -182,7 +182,7 @@ class AsValue < ActiveRecord::Base
       else
       end
     end
-    created_date = created_at.strftime("%Y-%m-%d")
+    created_date = created_at.strftime("%Y-%m-%d %H:%M")
   end
 
   def self.get_record_updated_date(labels,numero)
@@ -194,7 +194,7 @@ class AsValue < ActiveRecord::Base
       else
       end
     end
-    updated_date = updated_at.strftime("%Y-%m-%d")
+    updated_date = updated_at.strftime("%Y-%m-%d %H:%M")
   end
 
 end
