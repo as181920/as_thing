@@ -36,7 +36,7 @@ class ApplicationController < ActionController::Base
   end
 
   def require_owned
-    if AsNote.find(params["as_note_id"]).owners.include? current_user then
+    if AsNote.find_one(params["as_note_id"]).owners.include? current_user then
     else
       redirect_to root_url, :notice=>"not permitted!"
     end
